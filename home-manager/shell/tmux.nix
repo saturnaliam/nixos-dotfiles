@@ -21,6 +21,24 @@ in {
 			set -g default-terminal "tmux-256color"
 			set -ag terminal-overrides ",xterm-256color:RGB"
 
+			set -g @catppuccin_window_default_text "#W"
+			set -g @catppuccin_window_current_text "#W"
+
+			set -g @catppuccin_window_left_separator "█"
+			set -g @catppuccin_window_right_separator "█ "
+			set -g @catppuccin_window_middle_separator "  █"
+			set -g @catppuccin_window_number_position "right"
+			set -g @catppuccin_window_default_fill "number"
+			set -g @catppuccin_window_current_fill "number"
+
+			set -g @catppuccin_status_modules_right "directory date_time battery"
+			set -g @catppuccin_status_left_separator  " "
+			set -g @catppuccin_status_right_separator ""
+			set -g @catppuccin_status_right_separator_inverse "no"
+			set -g @catppuccin_status_fill "icon"
+			set -g @catppuccin_status_connect_separator "no"
+			set -g @catppuccin_date_time_text "%H:%M"
+
 			unbind C-b
 			set-option -g prefix M-x
 			bind M-x send-prefix
