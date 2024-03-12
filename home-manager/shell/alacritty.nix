@@ -3,7 +3,7 @@
 	programs.alacritty = {
 		enable = true;
 		settings = {
-			window.opacity = 0.5;
+			window.opacity = 0.7;
 			
 			colors.primary = {
 				foreground = "#cdd6f4";
@@ -38,7 +38,7 @@
 			};
 
 			font =
-				let family = "JetBrainsMono";
+				let family = "JetBrainsMono Nerd Font";
 					font-style = style: { inherit family style; };
 				in {
 					normal = font-style "Regular";
@@ -46,7 +46,7 @@
 					italic = font-style "Italic";
 					bold_italic = font-style "Bold Italic";
 
-					size = 12;
+					size = 10;
 				};
 		};
 	};

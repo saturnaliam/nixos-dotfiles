@@ -5,6 +5,7 @@
 		git
 		neofetch
 		firefox
+		tmux
 		grim
 		slurp
 		swappy
