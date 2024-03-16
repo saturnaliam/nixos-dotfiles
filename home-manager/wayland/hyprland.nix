@@ -19,7 +19,7 @@ in {
 			"$menu" = "rofi -show drun";
 
 			exec-once = [
-				"/etc/nixos/scripts/autostart"
+				"/etc/nixos/scripts/autostart.sh"
 			];
 
 			env = [
