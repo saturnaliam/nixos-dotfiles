@@ -7,6 +7,7 @@ in {
 		swaybg
 	];
 
+		
 	wayland.windowManager.hyprland = {
 		enable = true;
 		systemd.enable = true;
@@ -16,6 +17,15 @@ in {
 			"$mod" = mod;
 			"$terminal" = terminal;
 			"$menu" = "rofi -show drun";
+
+			exec-once = [
+				"/etc/nixos/scripts/autostart"
+			];
+
+			env = [
+				"XCURSOR_SIZE,24"
+				"QT_QPA_PLATFORMTHEME_qt5ct"
+			];
 			
 			monitor = [
 				"DP-1,1920x1080@60,0x0,1"
