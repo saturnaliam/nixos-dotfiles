@@ -2,7 +2,6 @@
 {
 	environment.systemPackages = with pkgs; [
 		neovim
-		obs-studio
 		git
 		neofetch
 		firefox
@@ -29,7 +28,4 @@
 	programs.direnv.enable = true;
 	programs.direnv.nix-direnv.enable = true;
 	programs.direnv.silent = true;
-
-	xdg.portal.enable = true;
-	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 }

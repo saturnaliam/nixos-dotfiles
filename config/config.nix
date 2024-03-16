@@ -44,14 +44,6 @@
 		};
 	};
 
-	environment.sessionVariables = {
-		NIXOS_OZONE_WL = "1";
-	};
-
-	hardware = {
-		nvidia.modesetting.enable = true;
-	};
-
 	nix.settings.auto-optimise-store = true;	
 
 	nixpkgs.config.allowUnfree = true;
