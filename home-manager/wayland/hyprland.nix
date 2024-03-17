@@ -1,7 +1,7 @@
 { config, pkgs, lib, ...  }:
 let
 mod = "SUPER";
-terminal = "alacritty";
+terminal = "kitty";
 in {
 	home.packages = with pkgs; [
 		swaybg
@@ -37,7 +37,7 @@ in {
 				gaps_in = 2;
 				gaps_out = 10;
 				border_size = 2;
-				"col.active_border" = "gba(f2cdcddd) rgba(f2cdcddd)";
+				"col.active_border" = "rgba(f2cdcddd) rgba(f2cdcddd)";
 				"col.inactive_border" = "rgba(595959aa)";
 
 				layout = "dwindle";
