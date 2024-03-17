@@ -6,6 +6,5 @@
 		./alacritty.nix
 	];
 
-	programs.fish.enable = true;
 #	programs.tmux.enable = true;
 }

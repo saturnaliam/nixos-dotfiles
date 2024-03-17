@@ -8,6 +8,7 @@
 		firefox
 		tmux
 		grim
+		fish
 		slurp
 		swappy
 		discord
