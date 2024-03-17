@@ -12,6 +12,7 @@
 		swappy
 		discord
 		keepassxc
+		eza
 		rofi-wayland-unwrapped
 		gh
 		gnupg
