@@ -17,6 +17,8 @@
 		rofi-wayland-unwrapped
 		gh
 		gnupg
+		ripgrep
+		fd
 	];
 
 	programs.hyprland.enable = true;
