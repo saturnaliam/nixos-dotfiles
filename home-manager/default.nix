@@ -14,6 +14,7 @@
 		extraConfig = {
 			init.defaultBranch = "main";
 			commit.gpgsign = true;
+			push.autoSetupRemote = true;
 			gpg.format = "ssh";
 			user.signingkey = "~/.ssh/github_signing.pub";
 			safe.directory = [ "/etc/nixos" ];
