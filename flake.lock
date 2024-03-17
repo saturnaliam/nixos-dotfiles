@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "catppuccin-sddm-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710685950,
+        "narHash": "sha256-ddz++Xzh3tiEdEnYvIhKcN8Y3FRSvaN0wtmCMb7DEVc=",
+        "owner": "catppuccin",
+        "repo": "sddm",
+        "rev": "808b4b65c044cd13287d5956ccf2bf49a7d2615f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "sddm",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -39,6 +55,7 @@
     },
     "root": {
       "inputs": {
+        "catppuccin-sddm-src": "catppuccin-sddm-src",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "tmux-nvim-src": "tmux-nvim-src"

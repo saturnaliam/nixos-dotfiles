@@ -2,9 +2,7 @@
 {
 	imports = [
 		./kitty.nix
-#		./tmux.nix
 		./alacritty.nix
+		./fish.nix
 	];
-
-#	programs.tmux.enable = true;
 }

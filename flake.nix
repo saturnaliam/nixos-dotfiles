@@ -7,6 +7,9 @@ inputs = {
 
 	tmux-nvim-src.url = "github:aserowy/tmux.nvim";
 	tmux-nvim-src.flake = false;
+
+	catppuccin-sddm-src.url = "github:catppuccin/sddm";
+	catppuccin-sddm-src.flake = false;
 };
 outputs = {
 	self,
