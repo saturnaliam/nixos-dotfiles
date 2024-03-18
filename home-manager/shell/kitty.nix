@@ -2,11 +2,11 @@
 {
 	programs.kitty = {
 		enable = true;
-		settings = {
+	  settings = {
 			font_family = "jetbrainsmono nerd font";
 			font_size = 10;
 			enable_audio_bell = "no";
-			background_opacity = "0.7";
+			background_opacity = "1";
 			confirm_os_window_close = 0;
 
 			# colors!!
@@ -17,19 +17,19 @@
 			cursor = "#f5e0dc";
 			cursor_text_color = "#1e1e2e";
 			url_color = "#f5e0dc";
-			active_border_color = "#b4befe";
+      active_border_color = "#b4befe";
 			inactive_border_color = "#6c7086";
 			bell_border_color = "#f9e2af";
 			wayland_titlebar_color = "system";
 			macos_titlebar_color = "system";
-			
+
 			# tab colors
 			active_tab_foreground = "#11111b";
 			active_tab_background = "#cba6f7";
 			inactive_tab_foreground = "#cdd6f4";
 			inactive_tab_background = "#181825";
 			tab_bar_background = "#11111b";
-			
+
 			# mark colors
 			mark1_foreground = "#1e1e2e";
 			mark1_background = "#b4befe";
