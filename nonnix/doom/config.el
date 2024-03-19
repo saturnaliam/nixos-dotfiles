@@ -17,10 +17,10 @@
       (evil-line-move (- (or count 1))))))
 
 ;; VISUAL CHANGES
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 13))
-(setq display-line-numbers 'relative)
-(setq doom-theme 'catppuccin)
-(setq catppuccin-flavor 'mocha)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 13)
+      display-line-numbers 'relative
+      doom-theme 'catppuccin
+      catppuccin-flavor 'mocha)
 
 ;; KEYBINDS
 (map!
@@ -44,4 +44,15 @@
 (after! org
   (setq
    org-hide-emphasis-markers t
-   org-hide-leading-stars nil))
+   org-hide-leading-stars nil
+
+   org-todo-keywords
+   '((sequence
+      "TODO(t)"
+      "EVENT(e)"
+      "TEST(s)"
+      "HOMEWORK(h)"))
+   org-todo-keyword-faces
+   '(("EVENT" . +org-todo-active)
+     ("TEST" . +org-todo-active)
+     ("HOMEWORK" . +org-todo-active))))
