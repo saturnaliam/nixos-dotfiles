@@ -4,6 +4,7 @@
     neovim
     obs-studio
     git
+    ntfs3g
     neofetch
     firefox
     tmux

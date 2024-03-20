@@ -49,10 +49,8 @@
    org-todo-keywords
    '((sequence
       "TODO(t)"
-      "EVENT(e)"
-      "TEST(s)"
-      "HOMEWORK(h)"))
+      "HOMEWORK(h)"
+      "DONE(d)"))
    org-todo-keyword-faces
-   '(("EVENT" . +org-todo-active)
-     ("TEST" . +org-todo-active)
+   '(("DONE" . +org-todo-onhold)
      ("HOMEWORK" . +org-todo-active))))
