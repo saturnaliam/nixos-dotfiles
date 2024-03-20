@@ -1,10 +1,7 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    neovim
     obs-studio
-    git
-    ntfs3g
     neofetch
     firefox
     tmux
@@ -15,10 +12,23 @@
     keepassxc
     eza
     rofi-wayland-unwrapped
-    gh
     gnupg
     ripgrep
     fd
+
+    # programming langs + related stuff
+    swiftPackages.clang
+    go
+    deno
+    rustc
+    cargo
+    python3
+    jdk
+    gnumake42
+    cmakeMinimal
+    neovim
+    git
+    gh
   ];
 
   programs.hyprland.enable = true;
