@@ -4,7 +4,7 @@
     enable = true;
     settings = 
       [{
-	layer = "top";
+	layer = "bottom";
 	position = "top";
 	mod = "dock";
 	exclusive = true;
@@ -17,7 +17,7 @@
 	modules-right = [ "network" "pulseaudio" ];
   
 	"clock" = {
-	  format = "{:󰥔  %I:%M    %p %a, %b %e}"; # format of HH:MM [AM/PM] (DAY), (MONTH), (DATE)
+	  format = "{:󰥔  %I:%M %p   %a, %b %e}"; # format of HH:MM [AM/PM] (DAY), (MONTH), (DATE)
 	};
 
 	"network" = {

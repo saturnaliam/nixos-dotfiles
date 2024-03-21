@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    obs-studio
     neofetch
     firefox
     tmux
@@ -15,6 +14,7 @@
     gnupg
     ripgrep
     fd
+    dmenu-wayland
 
     # programming langs + related stuff
     swiftPackages.clang

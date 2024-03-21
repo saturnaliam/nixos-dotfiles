@@ -17,7 +17,7 @@
 			cursor = "#f5e0dc";
 			cursor_text_color = "#1e1e2e";
 			url_color = "#f5e0dc";
-      active_border_color = "#b4befe";
+			active_border_color = "#b4befe";
 			inactive_border_color = "#6c7086";
 			bell_border_color = "#f9e2af";
 			wayland_titlebar_color = "system";

@@ -99,6 +99,10 @@ in {
 				"$mod SHIFT, M, exit,"
 				"$mod, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
 				"$mod, D, exec, $menu"
+				"$mod, F, exec, firefox"
+				"$mod SHIFT, E, exec, emacsclient -c"
+
+				# moving workspaces
 				"$mod, 1, workspace, 1"
 				"$mod, 2, workspace, 2"
 				"$mod, 3, workspace, 3"
@@ -119,7 +123,6 @@ in {
 				"$mod SHIFT, 8, movetoworkspace, 8"
 				"$mod SHIFT, 9, movetoworkspace, 9"
 				"$mod SHIFT, 0, movetoworkspace, 10"
-				"$mod, F, exec, firefox"
 			];
 		};
 	};
