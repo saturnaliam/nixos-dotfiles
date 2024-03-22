@@ -16,7 +16,7 @@ in {
 		settings = {
 			"$mod" = mod;
 			"$terminal" = terminal;
-			"$menu" = "rofi -show drun";
+			"$menu" = "rofi";
 
 			exec-once = [
 				"/etc/nixos/scripts/autostart.sh"
@@ -93,14 +93,28 @@ in {
 			};
 
 			bind = [
-				"$mod, G, exec, $terminal -e tmux"
-				"$mod, T, exec, $terminal"
+				# hyprland stuff
 				"$mod, C, killactive,"
 				"$mod SHIFT, M, exit,"
-				"$mod, S, exec, grim -g \"$(slurp)\" - | swappy -f -"
-				"$mod, D, exec, $menu"
+				"$mod, V, togglefloating"
+				"$mod, H, movefocus, r"
+				"$mod, J, movefocus, d"
+				"$mod, K, movefocus, u"
+				"$mod, L, movefocus, l"
+				"$mod SHIFT, F, fullscreen"
+
+
+				# opening programs
 				"$mod, F, exec, firefox"
 				"$mod SHIFT, E, exec, emacsclient -c"
+				"$mod, D, exec, $menu -show drun"
+				"$mod, S, exec, $menu -show ssh"
+				"$mod, B, exec, $menu -show filebrowser"
+				"$mod, T, exec, $terminal"
+				"$mod, G, exec, $terminal -e tmux"
+
+				# misc
+				"$mod SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # screenshotting
 
 				# moving workspaces
 				"$mod, 1, workspace, 1"

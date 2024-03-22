@@ -9,6 +9,7 @@
 }
 
 configuration {
+	modes: [ window, drun, run, ssh, filebrowser ];
 	font: "jetbrainsmono nerd font 11";
 	show-icons: true;
 	display-drun: "";
