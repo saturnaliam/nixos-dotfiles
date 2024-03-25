@@ -1,8 +1,12 @@
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
+vim.opt.expandtab = true;
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.g.cursorline = true
+vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- sets up lazy for package management
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

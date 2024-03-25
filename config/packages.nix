@@ -2,6 +2,8 @@
 {
   environment.systemPackages = with pkgs; [
     neofetch
+		unzip
+		wget
     firefox
     tmux
     grim
@@ -17,6 +19,7 @@
     dmenu-wayland
 
     # programming langs + related stuff
+		lua-language-server
     swiftPackages.clang
     go
     deno
@@ -29,6 +32,7 @@
     neovim
     git
     gh
+		nodejs_21
   ];
 
   programs.hyprland.enable = true;

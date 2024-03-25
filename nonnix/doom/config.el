@@ -3,6 +3,7 @@
 ;; BEHAVIOR
 (setq confirm-kill-emacs nil) ;; making it so emacs doesnt beg for mercy when i try to kill her
 (setq-default tab-width 2)
+(setq org-agenda-files '("~/agenda"))
 
 ;; kiana helped me with these lines to make j and k based on visual lines
 (setq evil-respect-visual-line-mode t)
