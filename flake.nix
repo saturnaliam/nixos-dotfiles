@@ -25,7 +25,7 @@ outputs = {
       system = "x86_64-linux";
       modules = [
         ./config
-        ./hardware-configuration.nix
+        ./hardware.nix
         { _module.args = moduleArgs; }
         home-manager.nixosModules.home-manager
         {
