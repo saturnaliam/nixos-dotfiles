@@ -14,7 +14,7 @@
 
 	modules-left = [ "hyprland/workspaces" "clock" ];
 	modules-center = [ "hyprland/window" ];
-	modules-right = [ "network" "pulseaudio" ];
+	modules-right = [ "battery" "network" "pulseaudio" ];
   
 	"clock" = {
 	  format = "{:󰥔  %I:%M %p   %a, %b %e}"; # format of HH:MM [AM/PM] (DAY), (MONTH), (DATE)
@@ -27,6 +27,10 @@
 	"pulseaudio" = {
 	  "format" = "  {volume}%";
 	};
+
+	"battery" = {
+		"format" = "  {capacity}%";
+	};
       }];
 
       style = ''
@@ -36,6 +40,7 @@
 	@define-color pink #f5c2e7;
 	@define-color lavender #b4befe;
 	@define-color rosewater #f5e0dc;
+	@define-color green #a6e3a1;
 
       	* {
 	  border: none;
@@ -60,7 +65,8 @@
 
 	#clock,
 	#network,
-  	#pulseaudio {
+  #pulseaudio,
+	#battery {
 	  margin: 4px 3px;
 	  border-radius: 5px;
 	  padding: 0px 15px;
@@ -79,6 +85,10 @@
 	#pulseaudio {
 	  color: @lavender;
 	  margin-right: 5px;
+	}
+
+	#battery {
+		color: @green;
 	}
      '';
   };
