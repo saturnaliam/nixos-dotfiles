@@ -94,27 +94,28 @@ in {
 
 			bind = [
 				# hyprland stuff
-				"$mod, C, killactive,"
-				"$mod SHIFT, M, exit,"
-				"$mod, V, togglefloating"
-				"$mod, H, movefocus, r"
-				"$mod, J, movefocus, d"
-				"$mod, K, movefocus, u"
-				"$mod, L, movefocus, l"
-				"$mod SHIFT, F, fullscreen"
+				"$mod, C, killactive," # kills active window
+				"$mod SHIFT, M, exit," # closes hyprland
+				"$mod, V, togglefloating" # makes current window float
+				"$mod, H, movefocus, r" # moves focus right
+				"$mod, J, movefocus, d" # moves focus down
+				"$mod, K, movefocus, u" # moves focus up
+				"$mod, L, movefocus, l" # moves focus left
+				"$mod SHIFT, F, fullscreen" # makes current window fullscreen
 
 
 				# opening programs
-				"$mod, F, exec, firefox"
-				"$mod SHIFT, E, exec, emacsclient -c"
-				"$mod, D, exec, $menu -show drun"
-				"$mod, S, exec, $menu -show ssh"
-				"$mod, B, exec, $menu -show filebrowser"
-				"$mod, T, exec, $terminal"
-				"$mod, G, exec, $terminal -e tmux"
+				"$mod, F, exec, firefox" # opens firefox
+				"$mod SHIFT, E, exec, emacsclient -c" # opens emacs
+				"$mod, D, exec, $menu -show drun" # opens the menu in drun mode
+				"$mod, S, exec, $menu -show ssh" # opens the menu in ssh mode
+				"$mod, B, exec, $menu -show filebrowser" # opens the menu in filebrowser mode
+        "$mod SHIFT, code:61, exec, /etc/nixos/scripts/show-wm-binds.sh" # opens the keybinds help menu
+				"$mod, T, exec, $terminal" # opens the terminal
+				"$mod, G, exec, $terminal -e tmux" # opens the terminal w/ tmux
 
 				# misc
-				"$mod SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # screenshotting
+				"$mod SHIFT, S, exec, grim -g \"$(slurp)\" - | swappy -f -" # makes a screenshot
 
 				# moving workspaces
 				"$mod, 1, workspace, 1"

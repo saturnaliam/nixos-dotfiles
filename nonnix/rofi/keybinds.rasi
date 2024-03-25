@@ -1,0 +1,148 @@
+* {
+	BG: #1e1d2fff;
+	FG: #d9e0eeff;
+	BDR: #96cdfbff;
+	IMG: #fae3b0ff;
+	SEL: #1e1e2eff;
+	UGT: #f28fadff;
+	BGA: #89dcebff;
+}
+
+configuration {
+	font: "jetbrainsmono nerd font 11";
+}
+
+window {
+	transparency: "real";
+	background-color: @BG;
+	text-color: @FG;
+	border: 2px;
+	border-color: @BDR;
+	border-radius: 10px;
+	width: 600px;
+	anchor: center;
+	x-offset: 0;
+	y-offset: 0;
+}
+
+prompt {
+	enabled: true;
+	padding: 8px;
+	background-color: @BG;
+	text-color: @IMG;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: "󰌌 ";
+	border-radius: 100%;
+	background-color: @SEL;
+	text-color: @FG;
+	padding: 8px 12px 8px 12px;
+	font: "jetbrainsmono nerd font 11";
+}
+
+entry {
+	background-color: @BG;
+	text-color: @FG;
+	placeholder-color: @FG;
+	expand: true;
+	horizontal-align: 0;
+	placeholder: "Search...";
+	blink: true;
+	border: 0px 0px 2px 0px;
+	border-color: @BDR;
+	border-radius: 10px;
+	padding: 8px;
+}
+
+inputbar {
+	children: [ textbox-prompt-colon, prompt, entry ];
+	background-color: @BG;
+	text-color: @FG;
+	expand: false;
+	border: 0px 0px 0px 0px;
+	border-radius: 0px;
+	border-color: @BDR;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	position: center;
+}
+
+case-indicator {
+	background-color: @BG;
+	text-color: @FG;
+	spacing: 0;
+}
+
+listview {
+	background-color: @BG;
+	columns: 1;
+	lines: 15;
+	spacing: 4px;
+	cycle: false;
+	border: 0px;
+	dynamic: true;
+	layout: vertical;
+	scrollbar: false;
+}
+
+mainbox {
+	background-color: @BG;
+	children: [ inputbar, listview ];
+	spacing: 15px;
+	padding: 15px;
+}
+
+element.normal.normal,
+element.alternate.normal {
+	background-color: @BG;
+	text-color: @FG;
+	orientation: horizontal;
+	border-radius: 4px;
+	padding: 6px 6px 6px 6px;
+	border: 0px;
+}
+
+element-icon {
+	background-color: inherit;
+	text-color: inherit;
+	horizontal-align: 0.5;
+	vertical-align: 0.5;
+	size: 24px;
+	border: 0px;
+}
+
+element-text {
+	background-color: inherit;
+	text-color: inherit;
+	expand: true;
+	horizontal-align: 0;
+	vertical-align: 0.5;
+	margin: 2px 0px 2px 2px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+	background-color: @UGT;
+	text-color: @FG;
+	border-radius: 9px;
+}
+
+element selected {
+	background-color: @BGA;
+	text-color: @SEL;
+	border: 0px 0px 0px 0px;
+	border-radius: 10px;
+	border-color: @BDR;
+}
+
+element selected.urgent {
+	background-color: @UGT;
+	text-color: @FG;
+}
+
+element selected.active {
+	background-color: @BGA;
+	color: @FG;
+}
