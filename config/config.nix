@@ -23,6 +23,7 @@
   networking.hostName = "nixos";
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.scanRandMacAddress = false;
   
   services.pipewire.enable = true;
   services.pipewire.pulse.enable = true;

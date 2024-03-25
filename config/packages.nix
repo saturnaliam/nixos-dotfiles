@@ -16,7 +16,6 @@
     gnupg
     ripgrep
     fd
-    dmenu-wayland
 
     # programming langs + related stuff
 		lua-language-server
@@ -38,6 +37,8 @@
   programs.hyprland.enable = true;
 
   programs.fish.enable = true;
+
+  programs.steam.enable = true;
 
   services.emacs.enable = true;
   services.emacs.package = pkgs.emacs29.override {
