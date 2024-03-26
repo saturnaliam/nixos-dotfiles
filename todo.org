@@ -1,0 +1,17 @@
+#+TITLE: Todo
+#+AUTHOR: Lucia
+#+DESCRIPTION: Various things I still have to do for my config
+
+* Major
+- install something for notifications?? how did i just.. forget??
+- configure emacs and neovim to be fully useable for programming
+- make a proper way of dealing with my hardwar configuration file across different computers instead of my horribly jank solution i have right now
+
+* Minor
+- find out why sddm doesn't work correctly with my theme
+- add more emacs keybinds
+- add more neovim keybinds
+- add more hyprland keybinds
+- try out qtile it seems silly
+- do a full cleanup of all of my configuration files
+- make my rofi and tmux configs into proper nix/homemanager configured files
