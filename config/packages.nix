@@ -32,6 +32,13 @@
     git
     gh
 		nodejs_21
+    rust-analyzer # needed for rust in doom emacs
+    shellcheck # needed for shell in doom emacs
+    nixfmt # needed for nix in doom emacs
+    isort # needed for python in doom emacs
+    pipenv # needed for python in doom emacs
+    glow
+
   ];
 
   programs.hyprland.enable = true;
