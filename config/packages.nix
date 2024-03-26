@@ -13,9 +13,11 @@
     keepassxc
     eza
     rofi-wayland-unwrapped
-    gnupg
     ripgrep
     fd
+    bat
+    pinentry-curses
+    libreoffice-fresh
 
     # programming langs + related stuff
 		lua-language-server

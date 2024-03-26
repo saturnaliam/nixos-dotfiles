@@ -58,4 +58,10 @@
   nixpkgs.config.allowUnfree = true;
   
   system.stateVersion = "23.11";
+  
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+  };
 }
