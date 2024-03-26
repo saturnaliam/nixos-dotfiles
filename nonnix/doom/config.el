@@ -28,24 +28,28 @@
  "C-c M-x" #'kill-buffer
  "C-c C-x" #'kill-current-buffer
  "C-c C-n" "noh<CR>"
- "C-b" ":noh<CR>")
+ "C-b" ":noh<CR>"
 
-(map!
  (:map evil-normal-state-map
        "U" #'evil-redo
-       "<backtab>" #'previous-buffer)
+       "<backtab>" #'previous-buffer
+       "<tab>" #'next-buffer)
 
  (:leader
   :desc "Dired"
-  "e" #'dired)
+  "d" #'dired
+  :desc "Treemacs"
+  "e" #'treemacs)
 
  (:map evil-motion-state-map
-       "C-b" nil)
+       "C-b" nil
+       "<tab>" nil)
 
  (:map dired-mode-map
       :after dired
       :n "+" #'dired-create-empty-file
       :n "f" #'dired-create-directory
+      :n "p" #'direc-up-directory
 
       :desc "Create directory"
       :n "C-f c" #'dired-create-directory
