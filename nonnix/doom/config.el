@@ -30,16 +30,31 @@
  "C-c C-n" "noh<CR>"
  "C-b" ":noh<CR>")
 
-(map! :map evil-normal-state-map
-      "U" #'evil-redo
-      "<backtab>" #'previous-buffer)
+(map!
+ (:map evil-normal-state-map
+       "U" #'evil-redo
+       "<backtab>" #'previous-buffer)
 
-(map! :leader
-      :desc "Dired"
-      "e" #'dired)
+ (:leader
+  :desc "Dired"
+  "e" #'dired)
 
-(map! :map evil-motion-state-map
-      "C-b" nil)
+ (:map evil-motion-state-map
+       "C-b" nil)
+
+ (:map dired-mode-map
+      :after dired
+      :n "+" #'dired-create-empty-file
+      :n "f" #'dired-create-directory
+
+      :desc "Create directory"
+      :n "C-f c" #'dired-create-directory
+      :desc "Create file"
+      :n "C-f n" #'dired-create-empty-file
+      :desc "Delete file"
+      :n "C-f d" #'dired-do-delete
+      :desc "Go up a directory"
+      :n "C-f u" #'dired-up-directory))
 
 ;; ORG MODE
 (after! org
