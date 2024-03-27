@@ -15,9 +15,11 @@
     rofi-wayland-unwrapped
     ripgrep
     fd
-    bat
     pinentry-curses
     libreoffice-fresh
+    nitrogen
+    dmenu
+    polybarFull
 
     # programming langs + related stuff
 		lua-language-server
@@ -44,6 +46,8 @@
   ];
 
   programs.hyprland.enable = true;
+
+  services.xserver.windowManager.qtile.enable = true;
 
   programs.fish.enable = true;
 
