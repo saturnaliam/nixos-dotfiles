@@ -38,6 +38,7 @@ outputs = {
     };
 in {
   nixosConfigurations = {
+  "nixos-desktop" = mkConfig { platform = "desktop"; };
   "nixos-thinkpad" = mkConfig { platform = "thinkpad"; };
   };
 };
