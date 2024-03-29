@@ -19,7 +19,7 @@
 			l = "exa -a --color=always --group-directories-first";
 			ll = "exa -al --color=always --group-directories-first";
 			mkdir = "mkdir -p";
-			rebuild = "cd /etc/nixos && git add -f hardware.nix && sudo nixos-rebuild switch && git rm -r --cached hardware.nix && cd -"; # do not look
+			rebuild = "sudo nixos-rebuild switch";
 			gaa = "git add --all";
 			ga = "git add";
 			gm = "git commit -m";
