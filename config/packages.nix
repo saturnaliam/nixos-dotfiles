@@ -10,6 +10,7 @@
     tmux
     grim
     slurp
+    appimage-run
     swappy
     discord
     keepassxc
@@ -19,9 +20,6 @@
     fd
     pinentry-curses
     libreoffice-fresh
-    nitrogen
-    dmenu
-    polybarFull
 
     # programming langs + related stuff
 		lua-language-server
@@ -44,12 +42,16 @@
     isort # needed for python in doom emacs
     pipenv # needed for python in doom emacs
     glow
-
+  
+    (catppuccin-gtk.override {
+      accents = [ "pink" ];
+      size = "compact";
+      tweaks = [ "rimless" "black" ];
+      variant = "mocha";
+    })
   ];
 
   programs.hyprland.enable = true;
-
-  services.xserver.windowManager.qtile.enable = true;
 
   programs.fish.enable = true;
 
