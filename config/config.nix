@@ -20,7 +20,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos";
+  networking.hostName = "";
+  networking.dhcpcd.enable = true;
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.scanRandMacAddress = false;
@@ -34,8 +35,10 @@
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
+      monaspace
+      terminus-nerdfont
       jetbrains-mono  
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
+      (nerdfonts.override { fonts = [ "Monaspace" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
       font-awesome
       emacs-all-the-icons-fonts
     ];

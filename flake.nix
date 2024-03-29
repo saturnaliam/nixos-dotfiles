@@ -20,13 +20,13 @@ outputs = {
     moduleArgs = inputs;
     lib = nixpkgs.lib;
     username = "lucia";
-  in {
-    nixosConfigurations.nixos = lib.nixosSystem {
+    mkConfig = { platform }: nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        ./platform.nix
         ./config
-        ./hardware.nix
-        { _module.args = moduleArgs; }
+        ./${platform}-hardware.nix
+        { _module.args = moduleArgs; inherit platform;}
         home-manager.nixosModules.home-manager
         {
           home-manager.users.${username} = import ./home-manager;
@@ -36,5 +36,9 @@ outputs = {
         }
       ];
     };
+in {
+  nixosConfigurations = {
+  "nixos-thinkpad" = mkConfig { platform = "thinkpad"; };
   };
-}    
+};
+}

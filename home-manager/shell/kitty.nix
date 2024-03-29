@@ -3,7 +3,7 @@
 	programs.kitty = {
 		enable = true;
 	  settings = {
-			font_family = "jetbrainsmono nerd font";
+			font_family = "monaspicene nerd font mono";
 			font_size = 10;
 			enable_audio_bell = "no";
 			background_opacity = "1";
