@@ -7,6 +7,18 @@ in {
 		swaybg
 	];
 
+  # fix for obsidian not working on my desktop
+  xdg.desktopEntries.obsidian = {
+    exec =
+      if config.platform == "desktop" then
+        "obsidian --enable-unsafe-webgpu --enable-features=Vulkan --use-vulkan=swiftshader --use-webgpu-adapter=swiftshader --no-sandbox %u"
+      else
+        "obsidian %u";
+
+        name = "Obsidian";
+        terminal = false;
+        icon = "obsidian";
+  };
 		
 	wayland.windowManager.hyprland = {
 		enable = true;

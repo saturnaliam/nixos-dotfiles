@@ -33,6 +33,8 @@ outputs = {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = moduleArgs;
+
+          home-manager.sharedModules = [ ./platform.nix { inherit platform; } ];
         }
       ];
     };

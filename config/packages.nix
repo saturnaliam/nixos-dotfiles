@@ -20,10 +20,11 @@
     fd
     pinentry-curses
     libreoffice-fresh
+    obsidian
 
     # programming langs + related stuff
 		lua-language-server
-    swiftPackages.clang
+    libclang
     go
     deno
     rustc
@@ -50,6 +51,8 @@
       variant = "mocha";
     })
   ];
+
+  services.xserver.windowManager.qtile.enable = true;
 
   programs.hyprland.enable = true;
 
