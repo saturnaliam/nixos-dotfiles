@@ -15,6 +15,8 @@
     discord
     keepassxc
     eza
+    vlc
+    syncthing
     rofi-wayland-unwrapped
     ripgrep
     fd
