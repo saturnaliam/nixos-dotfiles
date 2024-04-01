@@ -26,7 +26,7 @@
 
     # programming langs + related stuff
 		lua-language-server
-    libclang
+    llvmPackages_9.clang-unwrapped
     go
     deno
     rustc
