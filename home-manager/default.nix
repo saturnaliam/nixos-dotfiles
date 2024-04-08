@@ -1,6 +1,6 @@
 { ... }:
 {
-  imports = [ ./shell ./wayland ];
+  imports = [ ./shell ./wayland ./symlinks.nix ];
 
   home.username = "lucia";
   home.homeDirectory = "/home/lucia";
