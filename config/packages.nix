@@ -1,31 +1,41 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    helix
+    # various things to make using the wm easier
+    grim   
+    slurp 
+    swappy
+    rofi-wayland-unwrapped
     gtk3
+
+    # text editors + required stuff for them
+    helix
+    ripgrep
+    libreoffice-fresh # this is more than a text editor but idc
+    fd
+    obsidian
+    neovim
+
+    # various programming-related things
+    firebase-tools
+    git
+    gh
+    cmakeMinimal
+    gnumake42
+
+    # other misc stuff
     dhcpcd
-    neofetch
 		unzip
 		wget
     firefox
     tmux
-    grim
     mc
-    slurp
-    appimage-run
-    swappy
     discord
     keepassxc
     eza
     vlc
     syncthing
-    rofi-wayland-unwrapped
-    ripgrep
-    fd
     pinentry-curses
-    libreoffice-fresh
-    firebase-tools
-    obsidian
 
     # programming langs + related stuff
 		lua-language-server
@@ -36,21 +46,13 @@
     cargo
     python3
     jdk
-    gnumake42
-    cmakeMinimal
-    neovim
-    git
-    gh
 		nodejs_21
     rust-analyzer # needed for rust in doom emacs
     shellcheck # needed for shell in doom emacs
     nixfmt # needed for nix in doom emacs
     isort # needed for python in doom emacs
     pipenv # needed for python in doom emacs
-    glow
   ];
-
-  services.xserver.windowManager.qtile.enable = true;
 
   programs.hyprland.enable = true;
 
