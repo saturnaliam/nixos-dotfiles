@@ -10,7 +10,7 @@
     firefox
     tmux
     grim
-    pcmanfm
+    mc
     slurp
     appimage-run
     swappy
