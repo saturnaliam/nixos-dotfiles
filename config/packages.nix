@@ -22,6 +22,7 @@
     fd
     pinentry-curses
     libreoffice-fresh
+    firebase-tools
     obsidian
 
     # programming langs + related stuff
