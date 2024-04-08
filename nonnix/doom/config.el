@@ -1,6 +1,8 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; BEHAVIOR
+(setq warning-suppress-types '((lsp-mode)))
+
 (setq confirm-kill-emacs nil) ;; making it so emacs doesnt beg for mercy when i try to kill her
 (setq-default tab-width 2)
 (setq tab-width 2)

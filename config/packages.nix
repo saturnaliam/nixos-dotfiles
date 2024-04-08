@@ -2,6 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     helix
+    gtk3
     dhcpcd
     neofetch
 		unzip
@@ -9,6 +10,7 @@
     firefox
     tmux
     grim
+    pcmanfm
     slurp
     appimage-run
     swappy
@@ -46,13 +48,6 @@
     isort # needed for python in doom emacs
     pipenv # needed for python in doom emacs
     glow
-  
-    (catppuccin-gtk.override {
-      accents = [ "pink" ];
-      size = "compact";
-      tweaks = [ "rimless" "black" ];
-      variant = "mocha";
-    })
   ];
 
   services.xserver.windowManager.qtile.enable = true;
