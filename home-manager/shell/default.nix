@@ -4,5 +4,6 @@
 		./kitty.nix
 		./alacritty.nix
 		./fish.nix
+		./tmux.nix
 	];
 }

@@ -28,7 +28,7 @@
 		unzip
 		wget
     firefox
-    tmux
+#    tmux
     mc
     discord
     keepassxc
