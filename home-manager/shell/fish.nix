@@ -29,6 +29,7 @@
 			gch = "git checkout";
 			gb = "git branch";
 			gs = "git status";
+			gbn = "git checkout -b";
 		};
 	};
 }
