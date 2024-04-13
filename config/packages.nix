@@ -24,6 +24,8 @@
     gnumake42
 
     # other misc stuff
+    fluent-reader
+    gpa
     dhcpcd
 		unzip
 		wget
@@ -35,6 +37,7 @@
     eza
     vlc
     syncthing
+    catppuccin-gtk
     pinentry-curses
 
     # programming langs + related stuff
