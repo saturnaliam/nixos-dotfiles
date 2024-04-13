@@ -4,7 +4,7 @@
     enable = true;
     settings = 
       [{
-	layer = "bottom";
+	layer = "top";
 	position = "top";
 	mod = "dock";
 	exclusive = true;
@@ -15,7 +15,7 @@
 	modules-left = [ "hyprland/workspaces" "clock" ];
 	modules-center = [ "hyprland/window" ];
 	modules-right = [ "battery" "network" "pulseaudio" ];
-  
+
 	"clock" = {
 	  format = "{:󰥔  %I:%M %p   %a, %b %e}"; # format of HH:MM [AM/PM] (DAY), (MONTH), (DATE)
 	};
