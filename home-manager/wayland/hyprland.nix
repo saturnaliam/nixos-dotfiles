@@ -44,16 +44,22 @@ in {
 				"DVI-D-1,1920x1080@60,1920x0,1"
 			];
 	
+      input = {
+        follow_mouse = 0;
+      };
+
 			general = {
-				gaps_in = 0;
+				gaps_in = 2;
 				gaps_out = 5;
-				border_size = 2;
+				border_size = 0;
 				"col.active_border" = "rgba(f2cdcddd) rgba(f2cdcddd)";
 				"col.inactive_border" = "rgba(595959aa)";
 
-				layout = "dwindle";
+				layout = "master";
 				
 				allow_tearing = false;
+
+        resize_on_border = true;
 			};
 
 			decoration = {
@@ -65,42 +71,49 @@ in {
 					passes = 3;
 				};
 
-				drop_shadow = "yes";
+				drop_shadow = true;
 				shadow_range = 4;
 				shadow_render_power = 3;
 				"col.shadow" = "rgba(1a1a1aee)";
 			};
 
 			animations = {
-				enabled = "yes";
+				enabled = true;
 
-				bezier = [ "myBezier, 0.05, 0.9, 0.1, 1.05" ];
+				bezier = [ 
+          "easeOutQuint, 0.22, 1, 0.36, 1)"
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+        ];
 
 				animation= [
-					"windows, 1, 7, myBezier"
-					"windowsOut, 1, 7, default, popin 80%"
-					"border, 1, 10, default"
-					"borderangle, 1, 8, default"
-					"fade, 1, 7, default"
-					"workspaces, 1, 6, default"
-				];
+				  "windows, 1, 6, wind, slide"
+          "windowsIn, 1, 6, winIn, slide"
+          "windowsOut, 1, 3, winOut, slide"
+          "windowsMove, 1, 5, wind, slide"
+          "fade, 1, 10, default"
+          "workspaces, 1, 8, easeOutQuint, slidefade 80%"
+        ];
 			};
 
 			dwindle = {
-				pseudotile = "yes";
-				preserve_split = "yes";
+				pseudotile = true;
+				preserve_split = true;
 			};
 			
 			master = {
-				new_is_master = true;
+				new_is_master = false;
 			};
 
 			gestures = {
-				workspace_swipe = "off";
+				workspace_swipe = true;
 			};
 
 			misc = {
 				force_default_wallpaper = 0;
+        disable_hyprland_logo = true; # NO FUN!!
+        mouse_move_focuses_monitor = false;
 			};
 
 			bind = [
@@ -113,7 +126,11 @@ in {
 				"$mod, K, movefocus, u" # moves focus up
 				"$mod, L, movefocus, l" # moves focus left
 				"$mod SHIFT, F, fullscreen" # makes current window fullscreen
-
+				"$mod, mouse:272, movewindow" # move window w/ left click
+        "$mod SHIFT, L, layoutmsg, rollnext"
+        "$mod SHIFT, H, layoutmsg, rollprev"
+        "$mod SHIFT, W, layoutmsg, swapwithmaster, master"
+        "$mod, U, layoutmsg, focusmaster, auto"
 
 				# opening programs
 				"$mod, F, exec, firefox" # opens firefox
