@@ -25,7 +25,6 @@
 
     # other misc stuff
     fluent-reader
-    gpa
     dhcpcd
 		unzip
 		wget
@@ -42,7 +41,6 @@
 
     # programming langs + related stuff
 		lua-language-server
-    llvmPackages_9.clang-unwrapped
     go
     deno
     rustc

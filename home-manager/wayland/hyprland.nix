@@ -49,8 +49,8 @@ in {
       };
 
 			general = {
-				gaps_in = 0;
-				gaps_out = 2;
+				gaps_in = 2;
+				gaps_out = 4;
 				border_size = 0;
 				"col.active_border" = "rgba(f2cdcddd) rgba(f2cdcddd)";
 				"col.inactive_border" = "rgba(595959aa)";
