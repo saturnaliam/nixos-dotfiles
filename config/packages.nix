@@ -55,6 +55,8 @@
     pipenv # needed for python in doom emacs
   ];
 
+  services.xserver.windowManager.qtile.enable = true;
+  
   programs.hyprland.enable = true;
 
   programs.fish.enable = true;
