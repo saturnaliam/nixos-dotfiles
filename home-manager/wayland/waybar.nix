@@ -31,6 +31,12 @@
 	"battery" = {
 		"format" = "  {capacity}%";
 	};
+
+	"hyprland/workspaces" = {
+		"persistent-workspaces" = {
+			"*" = 5;
+		};
+	};
       }];
 
       style = ''
@@ -61,6 +67,11 @@
 
 	#workspaces button {
 		color: @text;
+	}
+
+	#workspaces button.active {
+		background-color: @pill;
+		color: @green;
 	}
 
 	#clock,

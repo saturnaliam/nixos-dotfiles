@@ -24,13 +24,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from libqtile import bar, layout, qtile, widget
+import os
+import subprocess
+
+from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = "kitty"
+terminal = "alacritty"
 
 keys = [
     # movement keybinds
@@ -52,21 +54,17 @@ keys = [
     Key([mod, "control"], "l", lazy.layout.grow_right(), desc="grow window right"),
 
     # misc
-    Key([mod], "g", lazy.spawn(terminal), desc="launch terminal"),
     Key([mod], "c", lazy.window.kill(), desc="kill current window"),
     Key([mod], "d", lazy.spawn("dmenu_run -l 8")),
-    Key([mod, "shift"], "f", lazy.spawn("firefox")),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="fullscreen window"),
     Key([mod, "shift"], "z", lazy.reload_config(), desc="reload config"),
     Key([mod, "shift"], "b", lazy.window.toggle_floating(), desc="toggle floating"),
     Key([mod, "shift"], "m", lazy.shutdown(), desc="stop qtile"),
 
-    # RAHH I FUCKING LOVE KEYCHORDS <33
-    KeyChord([mod], "a", [
-        Key([], "f", lazy.spawn("firefox")),
-        Key([], "e", lazy.spawn("emacsclient")),
-        Key([], "d", lazy.spawncmd()),
-    ]),
+    # spawning programs
+    Key([mod, "shift"], "e", lazy.spawn("emacsclient")),
+    Key([mod, "shift"], "f", lazy.spawn("firefox")),
+    Key([mod], "g", lazy.spawn(terminal), desc="launch terminal"),
 ]
 
 
@@ -97,13 +95,13 @@ for i in groups:
     )
 
 layouts = [
-    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=1),
+    #layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
+    #layout.Bsp(),
     # layout.Matrix(),
-    # layout.MonadTall(),
+    layout.MonadTall(margin=10, border_focus="#ea9a97", border_normal="#393552"),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -120,33 +118,6 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
-                # widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-            ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
-        ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
 ]
 
 # Drag floating layouts.
@@ -194,3 +165,7 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup_once
+def start_once():
+    subprocess.call([ '/etc/nixos/scripts/autostart-xorg.sh' ]);

@@ -7,7 +7,7 @@
 			set -g __fish_git_prompt_showdirtystate 1
 
 			function fish_prompt
-				printf ' %s%s@%s %s%s%s%s %s><> ' (set_color red) (whoami) (prompt_hostname) (set_color $fish_color_command) (prompt_pwd) (set_color $fish_color_cwd) (fish_git_prompt) (set_color $fish_color_keyword)
+				printf ' %s%s %s%s%s%s %s><> ' (set_color red) (whoami) (set_color $fish_color_command) (prompt_pwd) (set_color $fish_color_cwd) (fish_git_prompt) (set_color $fish_color_keyword)
 			end
 
       set -x MANPAGER "nvim +Man!"

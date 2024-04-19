@@ -1,12 +1,17 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    neofetch
+    btop
     # various things to make using the wm easier
     grim   
-    slurp 
+    slurp
+    picom
+    polybar
     swappy
     rofi-wayland-unwrapped
     gtk3
+    nitrogen
 
     # text editors + required stuff for them
     helix
@@ -14,6 +19,7 @@
     libreoffice-fresh # this is more than a text editor but idc
     fd
     obsidian
+    tetex
     neovim
 
     # various programming-related things
@@ -42,11 +48,15 @@
     # programming langs + related stuff
 		lua-language-server
     go
+    sass
+    gcc
     deno
     rustc
     cargo
     python3
     jdk
+    zig
+    nim
 		nodejs_21
     rust-analyzer # needed for rust in doom emacs
     shellcheck # needed for shell in doom emacs

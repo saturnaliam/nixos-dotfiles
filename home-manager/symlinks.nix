@@ -5,5 +5,6 @@
     ".config/nvim".source = ../nonnix/nvim;
     ".config/rofi".source = ../nonnix/rofi;
     ".config/qtile".source = ../nonnix/qtile;
+    ".config/polybar".source = ../nonnix/polybar;
   };
 }

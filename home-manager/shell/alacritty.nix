@@ -3,38 +3,38 @@
 	programs.alacritty = {
 		enable = true;
 		settings = {
-			window.opacity = 0.7;
+			window.opacity = 0.9;
 			
 			colors.primary = {
-				foreground = "#cdd6f4";
-				background = "#1e1e2e";
+				foreground = "#e0def4";
+				background = "#232136";
 			};
 
 			colors.selection = {
-				text = "#1e1e2e";
-				background = "#f5e0dc";
+				text = "#232136";
+				background = "#e0def4";
 			};
 
 			colors.normal = {
-					black = "#45475a";
-					red = "#f38ba8";
-					green = "#a6e3a1";
-					yellow = "#f9e2af";
-					blue = "#89b4fa";
-					magenta = "#f5c2e7";
-					cyan = "#94e2d5";
-					white = "#bac2de";
+					black = "#e0def4";
+					red = "#eb6f92";
+					green = "#3e8fb0";
+					yellow = "#f6c177";
+					blue = "#9ccfd8";
+					magenta = "#c4a7e7";
+					cyan = "#ea9a97";
+					white = "#e0def4";
 			};
 			
 			colors.bright = {
-				black = "#45475a";
-				red = "#f38ba8";
-				green = "#a6e3a1";
-				yellow = "#f9e2af";
-				blue = "#89b4fa";
-				magenta = "#f5c2e7";
-				cyan = "#94e2d5";
-				white = "#bac2de";
+					black = "#e0def4";
+					red = "#eb6f92";
+					green = "#3e8fb0";
+					yellow = "#f6c177";
+					blue = "#9ccfd8";
+					magenta = "#c4a7e7";
+					cyan = "#ea9a97";
+					white = "#e0def4";
 			};
 
 			font =
@@ -46,7 +46,7 @@
 					italic = font-style "Italic";
 					bold_italic = font-style "Bold Italic";
 
-					size = 10;
+					size = 8;
 				};
 		};
 	};
