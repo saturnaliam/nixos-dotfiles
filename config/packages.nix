@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    neofetch
-    btop
     # various things to make using the wm easier
     grim   
     slurp
@@ -57,6 +55,9 @@
     jdk
     zig
     nim
+    html-tidy
+    stylelint
+    zls
 		nodejs_21
     rust-analyzer # needed for rust in doom emacs
     shellcheck # needed for shell in doom emacs

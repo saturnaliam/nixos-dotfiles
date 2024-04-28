@@ -116,6 +116,10 @@ in {
         mouse_move_focuses_monitor = false;
 			};
 
+      windowrulev2 = [
+        "float, title:^(* LibreOffice Writer)"
+      ];
+
 			bind = [
 				# hyprland stuff
 				"$mod, C, killactive," # kills active window
