@@ -33,8 +33,8 @@
 
  (:map evil-normal-state-map
        "U" #'evil-redo
-       "<backtab>" #'previous-buffer
-       "<tab>" #'next-buffer)
+       "<backtab>" #'centaur-tabs-backward
+       "<tab>" #'centaur-tabs-forward)
 
  (:leader
   :desc "Dired"

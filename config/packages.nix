@@ -64,6 +64,11 @@
     nixfmt # needed for nix in doom emacs
     isort # needed for python in doom emacs
     pipenv # needed for python in doom emacs
+
+    (hiPrio clang-tools.override {
+      llvmPackages = llvmPackages_16;
+      enableLibcxx = false;
+    })
   ];
 
   services.xserver.windowManager.qtile.enable = true;
