@@ -55,7 +55,7 @@ keys = [
 
     # misc
     Key([mod], "c", lazy.window.kill(), desc="kill current window"),
-    Key([mod], "d", lazy.spawn("dmenu_run -l 8")),
+    Key([mod], "d", lazy.spawn("dmenu_run")),
     Key([mod], "f", lazy.window.toggle_fullscreen(), desc="fullscreen window"),
     Key([mod, "shift"], "z", lazy.reload_config(), desc="reload config"),
     Key([mod, "shift"], "b", lazy.window.toggle_floating(), desc="toggle floating"),

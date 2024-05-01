@@ -19,7 +19,7 @@
       (evil-line-move (- (or count 1))))))
 
 ;; VISUAL CHANGES
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 13)
+(setq doom-font (font-spec :family "Iosevka NFM" :size 15)
       display-line-numbers 'relative
       doom-theme 'catppuccin
       catppuccin-flavor 'mocha)
