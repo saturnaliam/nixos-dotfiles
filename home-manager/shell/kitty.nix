@@ -3,8 +3,8 @@
 	programs.kitty = {
 		enable = true;
 	  settings = {
-			font_family = "monaspice nerd font mono";
-			font_size = 10;
+			font_family = "iosevka nfm";
+			font_size = 11;
 			enable_audio_bell = "no";
 			background_opacity = "1";
 			confirm_os_window_close = 0;

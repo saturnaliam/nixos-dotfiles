@@ -1,71 +1,84 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import subprocess
-
 from libqtile import bar, layout, qtile, widget, hook
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, KeyChord
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
+base = "#191724"
+surface = "#1f1d2e"
+overlay = "#26233a"
+muted = "#6e6a86"
+subtle = "#908caa"
+text = "#e0def4"
+love = "#eb6f92"
+gold = "#f6c177"
+rose = "#ebbcba"
+pine = "#31748f"
+foam = "#9ccfd8"
+iris = "#c4a7e7"
+highlight_low = "#21202e"
+highlight_med = "#403d52"
+highlight_high = "#524f67"
+
 mod = "mod4"
-terminal = "alacritty"
+terminal = "kitty"
 
 keys = [
-    # movement keybinds
-    Key([mod], "h", lazy.layout.left(), desc="move left"),
-    Key([mod], "j", lazy.layout.down(), desc="move down"),
-    Key([mod], "k", lazy.layout.up(), desc="move up"),
-    Key([mod], "l", lazy.layout.right(), desc="move right"),
+    Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
+    Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
+    Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "space", lazy.layout.next(), desc="Move window focus to other window"),
 
-    # moving windows keybinds
-    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="move window left"),
-    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="move window down"),
-    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="move window up"),
-    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="move window right"),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
-    # growing windows keybinds
-    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="grow window left"),
-    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="grow window down"),
-    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="grow window up"),
-    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="grow window right"),
+    Key([mod, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
+    Key([mod, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
+    Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
-    # misc
-    Key([mod], "c", lazy.window.kill(), desc="kill current window"),
-    Key([mod], "d", lazy.spawn("dmenu_run")),
-    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="fullscreen window"),
-    Key([mod, "shift"], "z", lazy.reload_config(), desc="reload config"),
-    Key([mod, "shift"], "b", lazy.window.toggle_floating(), desc="toggle floating"),
-    Key([mod, "shift"], "m", lazy.shutdown(), desc="stop qtile"),
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.layout.toggle_split(),
+        desc="Toggle between split and unsplit sides of stack",
+    ),
+    Key([mod], "t", lazy.spawn(terminal), desc="Launch terminal"),
 
-    # spawning programs
-    Key([mod, "shift"], "e", lazy.spawn("emacsclient")),
-    Key([mod, "shift"], "f", lazy.spawn("firefox")),
-    Key([mod], "g", lazy.spawn(terminal), desc="launch terminal"),
+    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
+    Key(
+        [mod, "shift"],
+        "f",
+        lazy.window.toggle_fullscreen(),
+        desc="Toggle fullscreen on the focused window",
+    ),
+    Key([mod], "v", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
+    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "d", lazy.spawn("dmenu_run -h 30"), desc="spawn dmenu"),
+    Key([mod], "f", lazy.spawn("firefox"), desc="spawn firefox"),
+    Key([mod, "shift"], "e", lazy.spawn("emacsclient -c"), desc="spawn emacs"),
+    Key([mod, "shift"], "g", lazy.spawn(f"{terminal} -e tmux attach"), desc="spawn tmux"),
+    Key([mod], "g", lazy.spawn(f"{terminal} -e tmux"), desc="spawn new tmux session"),
 ]
+
+# Add key bindings to switch VTs in Wayland.
+# We can't check qtile.core.name in default config as it is loaded before qtile is started
+# We therefore defer the check until the key binding is run by using .when(func=...)
+for vt in range(1, 8):
+    keys.append(
+        Key(
+            ["control", "mod1"],
+            f"f{vt}",
+            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
+            desc=f"Switch to VT{vt}",
+        )
+    )
 
 
 groups = [Group(i) for i in "123456789"]
@@ -95,13 +108,13 @@ for i in groups:
     )
 
 layouts = [
-    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=1),
-    #layout.Max(),
+    # layout.Columns(border_focus_stack=["#ffffff", "#ffffff"], border_width=1),
+    # layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    #layout.Bsp(),
+    # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(margin=10, border_focus="#ea9a97", border_normal="#393552"),
+    layout.MonadTall(border_focus=rose, border_normal=highlight_high, border_width=1),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -111,13 +124,49 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="sans",
-    fontsize=12,
+    font="Iosevka NFM",
+    fontsize=13,
     padding=3,
+    background = base,
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    margin_y = 5,
+                    margin_x = 7,
+                    padding_y = 0,
+                    padding_x = 1,
+                    highlight_method = "line",
+                    highlight_color = highlight_low,
+                    active = iris,
+                    foreground = text,
+                    inactive = highlight_high,
+                    this_current_screen_border = rose,
+                    borderwidth = 3,
+                ),
+                widget.TextBox(text = "|", foreground = muted),
+                widget.WindowName(max_chars = 40),
+                widget.Spacer(length = 8),
+                widget.Battery(format = "󰁹 {percent:2.0%}", foreground = foam, low_foreground = love),
+                widget.TextBox(text = "|", foreground = muted),
+                widget.Wlan(format = " {essid}", interface = "wlp2s0", foreground = gold),
+                widget.TextBox(text = "|", foreground = muted),
+                widget.Clock(
+                    foreground = iris,
+                    format = "%H:%M"
+                ),
+            ],
+            30,
+        ),
+        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
+        # By default we handle these events delayed to already improve performance, however your system might still be struggling
+        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
+        # x11_drag_polling_rate = 60,
+    ),
 ]
 
 # Drag floating layouts.
@@ -156,6 +205,11 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call('/etc/nixos/scripts/autostart-xorg.sh')
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -165,7 +219,3 @@ wl_input_rules = None
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-
-@hook.subscribe.startup_once
-def start_once():
-    subprocess.call([ '/etc/nixos/scripts/autostart-xorg.sh' ]);
