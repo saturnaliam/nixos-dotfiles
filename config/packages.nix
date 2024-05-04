@@ -12,7 +12,6 @@
     nitrogen
 
     # text editors + required stuff for them
-    helix
     ripgrep
     libreoffice-fresh # this is more than a text editor but idc
     fd
@@ -21,7 +20,7 @@
     neovim
 
     # various programming-related things
-    firebase-tools
+    emacs-gtk
     git
     gh
     cmakeMinimal
@@ -29,6 +28,7 @@
 
     # other misc stuff
     fluent-reader
+    syncthing
     dhcpcd
 		unzip
 		wget
@@ -44,6 +44,8 @@
     pinentry-curses
 
     # programming langs + related stuff
+    posix_man_pages
+    stdmanpages
 		lua-language-server
     go
     sass
@@ -93,10 +95,10 @@
 
   programs.steam.enable = true;
 
-  services.emacs.enable = true;
-  services.emacs.package = pkgs.emacs29.override {
-    withPgtk = true;
-  };
+  # services.emacs.enable = true;
+  # services.emacs.package = pkgs.emacs29.override {
+  #   withPgtk = true;
+  # };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;

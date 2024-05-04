@@ -25,8 +25,8 @@
   networking.hostName = "";
   networking.dhcpcd.enable = true;
   networking.wireless.enable = false;
-  networking.networkmanager.enable = true;
   networking.networkmanager.wifi.scanRandMacAddress = false;
+  networking.networkmanager.enable = true;
   
   services.pipewire.enable = true;
   services.pipewire.pulse.enable = true;
