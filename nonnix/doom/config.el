@@ -3,8 +3,12 @@
 ;; BEHAVIOR
 (setq warning-suppress-types '((lsp-mode)))
 
-(setq confirm-kill-emacs nil) ;; making it so emacs doesnt beg for mercy when i try to kill her
-(setq-default tab-width 4)
+(setq confirm-kill-emacs nil ;; making it so emacs doesnt beg for mercy when i try to kill her
+      auto-save-default t
+      auto-save-timeout 60
+      c-basic-offset 2)
+(setq-default tab-width 2
+              c-basic-offset 2)
 
 ;; kiana helped me with these lines to make j and k based on visual lines
 (setq evil-respect-visual-line-mode t)
@@ -22,7 +26,13 @@
 (setq doom-font (font-spec :family "Iosevka NFM" :size 15)
       display-line-numbers 'relative
       doom-theme 'catppuccin
-      catppuccin-flavor 'mocha)
+      catppuccin-flavor 'mocha
+      centaur-tabs-style "box"
+      centaur-tabs-set-bar 'left
+      x-underline-at-descent-line t
+      centaur-tabs-set-close-button nil
+      centaur-tabs-show-new-tab-button nil
+      centaur-tabs-gray-out-icons 'buffer)
 
 ;; KEYBINDS
 (map!
@@ -47,31 +57,22 @@
        "<tab>" nil)
 
  (:map dired-mode-map
-      :after dired
-      :n "+" #'dired-create-empty-file
-      :n "f" #'dired-create-directory
-      :n "p" #'direc-up-directory
+  :after dired
+  :n "+" #'dired-create-empty-file
+  :n "f" #'dired-create-directory
+  :n "p" #'direc-up-directory
 
-      :desc "Create directory"
-      :n "C-f c" #'dired-create-directory
-      :desc "Create file"
-      :n "C-f n" #'dired-create-empty-file
-      :desc "Delete file"
-      :n "C-f d" #'dired-do-delete
-      :desc "Go up a directory"
-      :n "C-f u" #'dired-up-directory))
+  :desc "Create directory"
+  :n "C-f c" #'dired-create-directory
+  :desc "Create file"
+  :n "C-f n" #'dired-create-empty-file
+  :desc "Delete file"
+  :n "C-f d" #'dired-do-delete
+  :desc "Go up a directory"
+  :n "C-f u" #'dired-up-directory))
 
 ;; ORG MODE
 (after! org
   (setq
    org-hide-emphasis-markers t
-   org-hide-leading-stars nil
-
-   org-todo-keywords
-   '((sequence
-      "TODO(t)"
-      "HOMEWORK(h)"
-      "DONE(d)"))
-   org-todo-keyword-faces
-   '(("DONE" . +org-todo-onhold)
-     ("HOMEWORK" . +org-todo-active))))
+   org-hide-leading-stars nil))
