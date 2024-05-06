@@ -1,3 +1,4 @@
+import socket
 import os
 import subprocess
 from libqtile import bar, layout, qtile, widget, hook
@@ -22,6 +23,8 @@ highlight_high = "#524f67"
 
 mod = "mod4"
 terminal = "kitty"
+
+is_desktop = socket.gethostname() == "nixos-desktop"
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -131,42 +134,47 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.GroupBox(
-                    margin_y = 5,
-                    margin_x = 7,
-                    padding_y = 0,
-                    padding_x = 1,
-                    highlight_method = "line",
-                    highlight_color = highlight_low,
-                    active = iris,
-                    foreground = text,
-                    inactive = highlight_high,
-                    this_current_screen_border = rose,
-                    borderwidth = 3,
-                ),
-                widget.TextBox(text = "|", foreground = muted),
-                widget.WindowName(max_chars = 40),
-                widget.Spacer(length = 8),
-                widget.Battery(format = "󰁹 {percent:2.0%}", foreground = foam, low_foreground = love),
-                widget.TextBox(text = "|", foreground = muted),
-                widget.Wlan(format = " {essid}", interface = "wlp2s0", foreground = gold),
-                widget.TextBox(text = "|", foreground = muted),
-                widget.Clock(
-                    foreground = iris,
-                    format = "%H:%M"
-                ),
-            ],
-            30,
+def get_bar(screen_num):
+    widgets = [
+        widget.GroupBox(
+            margin_y = 5,
+            margin_x = 7,
+            padding_y = 0,
+            padding_x = 1,
+            highlight_method = "line",
+            highlight_color = highlight_low,
+            active = iris,
+            foreground = text,
+            inactive = highlight_high,
+            this_current_screen_border = rose,
+            borderwidth = 3,
         ),
-        # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
-        # By default we handle these events delayed to already improve performance, however your system might still be struggling
-        # This variable is set to None (no cap) by default, but you can set it to 60 to indicate that you limit it to 60 events per second
-        # x11_drag_polling_rate = 60,
-    ),
+        widget.TextBox(text = "|", foreground = muted),
+        widget.WindowName(max_chars = 40),
+        widget.Spacer(length = 8),
+        widget.Battery(format = "󰁹 {percent:2.0%}", foreground = foam, low_foreground = love),
+        widget.TextBox(text = "|", foreground = muted),
+        widget.Wlan(format = " {essid}", interface = "wlp2s0", foreground = gold),
+        widget.TextBox(text = "|", foreground = muted),
+        widget.Clock(
+            foreground = iris,
+            format = "%H:%M"
+        ),
+        widget.TextBox(text = "|", foreground = muted),
+        widget.Systray(padding = 3),
+        widget.Spacer(length = 8),
+    ]
+
+    if is_desktop:
+        del widgets[4:6]
+
+    if screen_num != 1:
+        del widgets[-3:]
+    return bar.Bar(widgets, 30)
+
+screens = [
+    Screen(top=get_bar(1)),
+    Screen(top=get_bar(2)),
 ]
 
 # Drag floating layouts.

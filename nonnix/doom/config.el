@@ -27,7 +27,7 @@
       display-line-numbers 'relative
       doom-theme 'catppuccin
       catppuccin-flavor 'mocha
-      centaur-tabs-style "box"
+      centaur-tabs-style "alternate"
       centaur-tabs-set-bar 'left
       x-underline-at-descent-line t
       centaur-tabs-set-close-button nil

@@ -27,6 +27,7 @@
     gnumake42
 
     # other misc stuff
+    cdrtools
     fluent-reader
     syncthing
     dhcpcd
@@ -95,10 +96,7 @@
 
   programs.steam.enable = true;
 
-  # services.emacs.enable = true;
-  # services.emacs.package = pkgs.emacs29.override {
-  #   withPgtk = true;
-  # };
+  services.syncthing.enable = true;
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
