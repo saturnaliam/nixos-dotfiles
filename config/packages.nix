@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # various things to make using the wm easier
-    grim   
+    grim
     slurp
     picom
     polybar
@@ -31,8 +30,8 @@
     fluent-reader
     syncthing
     dhcpcd
-		unzip
-		wget
+    unzip
+    wget
     firefox
     bc
     mc
@@ -47,7 +46,7 @@
     # programming langs + related stuff
     posix_man_pages
     stdmanpages
-		lua-language-server
+    lua-language-server
     go
     sass
     gcc
@@ -58,15 +57,23 @@
     jdk
     zig
     nim
+    erlang
     html-tidy
     stylelint
     zls
-		nodejs_21
+    nodejs_21
+    shfmt
+    black
+    python311Packages.pyflakes
+    python311Packages.nose
+    python311Packages.pytest
+    nodePackages.js-beautify
     rust-analyzer # needed for rust in doom emacs
     shellcheck # needed for shell in doom emacs
     nixfmt # needed for nix in doom emacs
     isort # needed for python in doom emacs
     pipenv # needed for python in doom emacs
+    gleam
 
     (hiPrio clang-tools.override {
       llvmPackages = llvmPackages_16;
@@ -76,12 +83,14 @@
     (dmenu.override {
       patches = [
         (fetchpatch {
-          url = "https://tools.suckless.org/dmenu/patches/numbers/dmenu-numbers-20220512-28fb3e2.diff";
+          url =
+            "https://tools.suckless.org/dmenu/patches/numbers/dmenu-numbers-20220512-28fb3e2.diff";
           hash = "sha256-lg7CItn11YPEe7T7aPt1DBybZlnLjKQGC8J+OcY44Js=";
         })
 
         (fetchpatch {
-          url = "https://tools.suckless.org/dmenu/patches/line-height/dmenu-lineheight-5.2.diff";
+          url =
+            "https://tools.suckless.org/dmenu/patches/line-height/dmenu-lineheight-5.2.diff";
           hash = "sha256-QdY2T/hvFuQb4NAK7yfBgBrz7Ii7O7QmUv0BvVOdf00=";
         })
       ];
@@ -89,7 +98,7 @@
   ];
 
   services.xserver.windowManager.qtile.enable = true;
-  
+
   programs.hyprland.enable = true;
 
   programs.fish.enable = true;
