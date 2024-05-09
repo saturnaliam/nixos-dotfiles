@@ -47,7 +47,7 @@
     (insert (propertize
             (+doom-dashboard--center
              +doom-dashboard--width
-             "[ L U C I E M A C S]")
+             "[ D O O M  E M A C S ]")
             'face 'doom-dashboard-title)
            (make-string +doom-dashboard-title-padding ?\n))))
 
@@ -56,3 +56,39 @@
         doom-dashboard-widget-title
         doom-dashboard-widget-shortmenu
         doom-dashboard-widget-loaded))
+
+(map!
+ "C-c M-x" #'kill-buffer
+ "C-c C-x" #'kill-current-buffer
+ "C-c C-n" "noh<CR>"
+ "C-b" ":noh<CR>"
+
+ (:map evil-normal-state-map
+       "U" #'evil-redo
+       "<backtab>" #'centaur-tabs-backward
+       "<tab>" #'centaur-tabs-forward)
+
+ (:leader
+  :desc "Dired"
+  "d" #'dired
+  :desc "Treemacs"
+  "e" #'treemacs)
+
+ (:map evil-motion-state-map
+       "C-b" nil
+       "<tab>" nil)
+
+ (:map dired-mode-map
+  :after dired
+  :n "+" #'dired-create-empty-file
+  :n "f" #'dired-create-directory
+  :n "p" #'direc-up-directory
+
+  :desc "Create directory"
+  :n "C-f c" #'dired-create-directory
+  :desc "Create file"
+  :n "C-f n" #'dired-create-empty-file
+  :desc "Delete file"
+  :n "C-f d" #'dired-do-delete
+  :desc "Go up a directory"
+  :n "C-f u" #'dired-up-directory))
