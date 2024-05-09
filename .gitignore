@@ -1,3 +1,5 @@
 password
 fish_variables
 hardware.nix
+__pycache__/
+flycheck_config.el
