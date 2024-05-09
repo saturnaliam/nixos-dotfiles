@@ -124,10 +124,10 @@
        data                                        ; config/data formats
        ;;(dart +flutter)                           ; paint ui and not much else
        ;;dhall
-       ;;elixir                                    ; erlang done right
+       (elixir +lsp +tree-sitter)                  ; erlang done right
        ;;elm                                       ; care for a cup of TEA?
        emacs-lisp                                  ; drown in parentheses
-       ;;erlang                                    ; an elegant language for a more civilized age
+       (erlang +lsp +tree-sitter)                  ; an elegant language for a more civilized age
        ;;ess                                       ; emacs speaks statistics
        ;;factor
        ;;faust                                     ; dsp, but you get to keep your soul
@@ -137,13 +137,13 @@
        ;;gdscript                                  ; the language you waited for
        ;;(go +lsp +tree-sitter)                    ; the hipster dialect
        ;;(graphql +lsp)                            ; Give queries a REST
-       ;;(haskell +lsp)                            ; a language that's lazier than I am
+       (haskell +lsp +tree-sitter)                 ; a language that's lazier than I am
        ;;hy                                        ; readability of scheme w/ speed of python
        ;;idris                                     ; a language you can depend on
        (json +lsp +tree-sitter)                    ; At least it ain't XML
        (java +lsp +tree-sitter)                    ; the poster child for carpal tunnel syndrome
        (javascript +lsp +tree-sitter)              ; all(hope(abandon(ye(who(enter(here))))))
-       ;;julia                                     ; a better, faster MATLAB
+       (julia +lsp +tree-sitter)                   ; a better, faster MATLAB
        ;;kotlin                                    ; a better, slicker Java(Script)
        (latex +fold +lsp +cdlatex)                 ; writing papers in Emacs has never been so fun
        ;;lean                                      ; for folks with too much to prove
@@ -190,5 +190,5 @@
        ;;twitter           ; twitter client https://twitter.com/vnought
 
        :config
-       ;;literate
+       literate
        (default +bindings +smartparens))
