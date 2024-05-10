@@ -3,6 +3,7 @@
     # various things to make using the wm easier
     grim
     slurp
+    dunst
     picom
     polybar
     swappy
@@ -101,7 +102,10 @@
     })
   ];
 
-  services.xserver.windowManager.qtile.enable = true;
+  services.xserver.windowManager.qtile = {
+    enable = true;
+    backend = "x11";
+  };
 
   programs.hyprland.enable = true;
 

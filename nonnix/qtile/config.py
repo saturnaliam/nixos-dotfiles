@@ -5,6 +5,7 @@ from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
+
 base = "#191724"
 surface = "#1f1d2e"
 overlay = "#26233a"
@@ -174,8 +175,8 @@ def get_bar(screen_num):
         widget.Mpris2(
             format="{xesam:title} - {xesam:artist}",
             no_metadata_text="Unknown track",
-            paused_text=" {track}",
-            playing_text=" {track}",
+            paused_text="{track}",
+            playing_text="{track}",
             width=150,
             foreground=foam,
         ),
