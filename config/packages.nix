@@ -9,6 +9,7 @@
     rofi-wayland-unwrapped
     gtk3
     nitrogen
+    xfce.xfce4-screenshooter
 
     # text editors + required stuff for them
     ripgrep
@@ -31,6 +32,7 @@
     syncthing
     dhcpcd
     unzip
+    spotify
     wget
     firefox
     bc
@@ -54,6 +56,7 @@
     rustc
     cargo
     python3
+    libtool
     jdk
     zig
     nim
@@ -64,6 +67,7 @@
     nodejs_21
     shfmt
     black
+    hugo
     python311Packages.pyflakes
     python311Packages.nose
     python311Packages.pytest

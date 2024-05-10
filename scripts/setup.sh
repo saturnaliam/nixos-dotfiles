@@ -26,3 +26,17 @@ if [ ! -d "$HOME/.config/rofi/" ]; then
   echo "[i] Creating symlink for Rofi"
   ln -s /etc/nixos/nonnix/rofi/ ~/.config/
 fi
+
+# seting up go for doom emacs
+go install github.com/motemen/gore/cmd/gore@latest
+go install github.com/stamblerre/gocode@latest
+go install golang.org/x/tools/cmd/godoc@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install golang.org/x/tools/cmd/gorename@latest
+go install golang.org/x/tools/cmd/guru@latest
+go install github.com/cweill/gotests/...@latest
+go install github.com/fatih/gomodifytags@latest
+
+go install golang.org/x/tools/gopls@latest
+
+go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest

@@ -1,7 +1,6 @@
 #+TITLE: doom literate config :3
 
-* Behavior
-** Fixing small annoyances
+* Fixing small annoyances
 When using Deno, there are sometimes super annoying errors that don't really matter, this just disables them.
 #+begin_src emacs-lisp
 (setq warning-suppress-types '((lsp-mode)))
@@ -21,7 +20,7 @@ Making j and k based off of visual lines, huge thanks to Kiana for showing me th
       (evil-line-move (- (or count 1))))))
 #+end_src
 
-** General behavioral things
+* General behavioral things
 Setting tab width, autosaving, and some other basic configuration for the behavior.
 #+begin_src emacs-lisp
 (setq confirm-kill-emacs nil ;; making emacs shut up so she doesnt beg for mercy when i try to kill her
@@ -33,7 +32,14 @@ Setting tab width, autosaving, and some other basic configuration for the behavi
               c-basic-offset 2)
 #+end_src
 
-* Visual Tweaks
+* Setting the default shell
+Fish isn't a POSIX shell, so I set mine to bash.
+#+begin_src emacs-lisp
+(setq shell-file-name (executable-find "bash"))
+(setq-default vterm-shell (executable-find "fish"))
+#+end_src
+
+* Basic visual tweaks
 Setting my font, line numbers, and colorscheme.
 #+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Iosevka NFM" :size 15)
@@ -43,7 +49,7 @@ Setting my font, line numbers, and colorscheme.
       x-underline-at-descent-line t) ;; i have NO clue what this does, but i dont want to dare removing it
 #+end_src
 
-** Configuring the tab bar
+* Configuring the tab bar
 As someone who use Visual Studio Code for years, a solid tab bar is a MUST for me.
 #+begin_src emacs-lisp
 (setq centaur-tabs-style "bar"
@@ -53,12 +59,16 @@ As someone who use Visual Studio Code for years, a solid tab bar is a MUST for m
       centaur-tabs-gray-out-icons 'buffer)
 #+end_src
 
-** Fancying up the splash screen
-Just fancying up the intro screen. Also courtesy of (stolen from) Kiana.
+* Fancying up the splash screen
+** Adding a custom image
 #+begin_src emacs-lisp
 (setq fancy-splash-image
       (expand-file-name "assets/emacs.png" doom-user-dir))
+#+end_src
 
+** Adding custom title
+Also courtesy of (stolen from) Kiana.
+#+begin_src emacs-lisp
 (defface doom-dashboard-title
   '((t (:weight bold :inherit warning)))
   "Face used for the Doom emacs title on the dashboard."
@@ -75,15 +85,24 @@ Just fancying up the intro screen. Also courtesy of (stolen from) Kiana.
              "[ D O O M  E M A C S ]")
             'face 'doom-dashboard-title)
            (make-string +doom-dashboard-title-padding ?\n))))
+#+end_src
+
+** Customizing menu items
+I don't need basically half of the items that are in the list by default, so I remove them.
+#+begin_src emacs-lisp
+(assoc-delete-all "Reload last session" +doom-dashboard-menu-sections)
+(assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
+(assoc-delete-all "Open documentation" +doom-dashboard-menu-sections)
+(assoc-delete-all "Recently opened files" +doom-dashboard-menu-sections)
 
 (setq +doom-dashboard-functions
       '(doom-dashboard-widget-banner
         doom-dashboard-widget-title
-        doom-dashboard-widget-shortmenu
-        doom-dashboard-widget-loaded))
+        doom-dashboard-widget-shortmenu))
 #+end_src
 
 * Keybinds
+** Misc. keybinds
 #+begin_src emacs-lisp
 (map!
  "C-c M-x" #'kill-buffer
@@ -104,9 +123,12 @@ Just fancying up the intro screen. Also courtesy of (stolen from) Kiana.
 
  (:map evil-motion-state-map
        "C-b" nil
-       "<tab>" nil)
+       "<tab>" nil))
+#+end_src
 
- (:map dired-mode-map
+** Dired keybinds
+#+begin_src emacs-lisp
+ (map! (:map dired-mode-map
   :after dired
   :n "+" #'dired-create-empty-file
   :n "f" #'dired-create-directory
