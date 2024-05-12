@@ -72,6 +72,7 @@
     python311Packages.pyflakes
     python311Packages.nose
     python311Packages.pytest
+    python311Packages.python-lsp-server
     nodePackages.js-beautify
     rust-analyzer # needed for rust in doom emacs
     shellcheck # needed for shell in doom emacs

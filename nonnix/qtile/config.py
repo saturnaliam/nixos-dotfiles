@@ -1,26 +1,12 @@
 import socket
-import os
 import subprocess
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
+import colors
 
-base = "#191724"
-surface = "#1f1d2e"
-overlay = "#26233a"
-muted = "#6e6a86"
-subtle = "#908caa"
-text = "#e0def4"
-love = "#eb6f92"
-gold = "#f6c177"
-rose = "#ebbcba"
-pine = "#31748f"
-foam = "#9ccfd8"
-iris = "#c4a7e7"
-highlight_low = "#21202e"
-highlight_med = "#403d52"
-highlight_high = "#524f67"
+colors = colors.TokyoNight
 
 mod = "mod4"
 terminal = "kitty"
@@ -72,11 +58,22 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "d", lazy.spawn("dmenu_run -h 30"), desc="spawn dmenu"),
     Key([mod], "f", lazy.spawn("firefox"), desc="spawn firefox"),
-    Key([mod, "shift"], "e", lazy.spawn("emacsclient -c"), desc="spawn emacs"),
+    KeyChord(
+        [mod],
+        "e",
+        [
+            Key([], "e", lazy.spawn("emacsclient -c")),
+            Key([], "r", lazy.spawn("pkill emacs"), lazy.spawn("emacs --daemon")),
+            Key([], "n", lazy.spawn("emacs")),
+        ],
+    ),
     Key(
         [mod, "shift"], "g", lazy.spawn(f"{terminal} -e tmux attach"), desc="spawn tmux"
     ),
     Key([mod], "g", lazy.spawn(f"{terminal} -e tmux"), desc="spawn new tmux session"),
+    # volume
+    Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol()),
+    Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol()),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -126,7 +123,9 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(border_focus=rose, border_normal=highlight_high, border_width=1),
+    layout.MonadTall(
+        border_focus="#ebbcba", border_normal=colors["overlay"], border_width=1
+    ),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -139,7 +138,7 @@ widget_defaults = dict(
     font="Iosevka Nerd Font Propo",
     fontsize=13,
     padding=3,
-    background=base,
+    background=colors["background"],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -152,33 +151,39 @@ def get_bar(screen_num):
             padding_y=0,
             padding_x=1,
             highlight_method="line",
-            highlight_color=highlight_low,
-            active=iris,
-            foreground=text,
-            inactive=highlight_high,
-            this_current_screen_border=rose,
+            highlight_color="#21202e",
+            active=colors["purple"],
+            foreground=colors["foreground"],
+            inactive=colors["overlay"],
+            this_current_screen_border=colors["extra2"],
             borderwidth=3,
         ),
-        widget.TextBox(text="|", foreground=muted),
-        widget.WindowName(max_chars=40),
+        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.WindowName(max_chars=40, foreground=colors["foreground"]),
         widget.Spacer(length=8),
-        widget.PulseVolume(foreground=foam, fmt=" {}"),
-        widget.TextBox(text="|", foreground=muted),
-        widget.Battery(
-            format="󰁹 {percent:2.0%}", foreground="#a6e3a1", low_foreground=love
+        widget.PulseVolume(
+            foreground=colors["extra1"], fmt=" {}", limit_max_volume=True, step=1
         ),
-        widget.TextBox(text="|", foreground=muted),
-        widget.Wlan(format=" {essid}", interface="wlp2s0", foreground=gold),
-        widget.TextBox(text="|", foreground=muted),
-        widget.Clock(foreground=iris, format="%H:%M"),
-        widget.TextBox(text="|", foreground=muted),
+        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.Battery(
+            format="󰁹 {percent:2.0%}",
+            foreground=colors["green"],
+            low_foreground=colors["red"],
+        ),
+        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.Wlan(
+            format=" {essid}", interface="wlp2s0", foreground=colors["purple"]
+        ),
+        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.Clock(foreground=colors["yellow"], format="%H:%M"),
+        widget.TextBox(text="|", foreground=colors["surface"]),
         widget.Mpris2(
             format="{xesam:title} - {xesam:artist}",
             no_metadata_text="Unknown track",
             paused_text="{track}",
             playing_text="{track}",
             width=150,
-            foreground=foam,
+            foreground=colors["extra2"],
         ),
         widget.Spacer(length=8),
     ]
@@ -219,8 +224,8 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus=rose,
-    border_normal=highlight_high,
+    border_focus=colors["red"],
+    border_normal=colors["overlay"],
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
@@ -230,7 +235,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-        Match(title="Spotify"),
+        Match(wm_class="Spotify"),
         Match(wm_class="KeePassXC"),
     ],
 )
@@ -248,7 +253,6 @@ wl_input_rules = None
 
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser("~")
     subprocess.call("/etc/nixos/scripts/autostart-xorg.sh")
 
 
