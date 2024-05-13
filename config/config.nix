@@ -40,7 +40,7 @@
       monaspace
       terminus-nerdfont
       jetbrains-mono  
-      (nerdfonts.override { fonts = [ "Iosevka" "Monaspace" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
+      (nerdfonts.override { fonts = [ "Ubuntu" "Iosevka" "Monaspace" "JetBrainsMono" "NerdFontsSymbolsOnly" ]; })
       font-awesome
       emacs-all-the-icons-fonts
     ];

@@ -1,4 +1,25 @@
 #+TITLE: doom literate config :3
+#+AUTHOR: saturnalia
+
+* Table of Contents :toc:
+- [[#fixing-small-annoyances][Fixing small annoyances]]
+- [[#general-behavioral-things][General behavioral things]]
+- [[#setting-the-default-shell][Setting the default shell]]
+- [[#basic-visual-tweaks][Basic visual tweaks]]
+  - [[#configuring-fonts][Configuring fonts]]
+  - [[#italicizing-comments][Italicizing comments]]
+  - [[#rainbow-mode][Rainbow mode]]
+- [[#configuring-the-tab-bar][Configuring the tab bar]]
+- [[#fancying-up-the-splash-screen][Fancying up the splash screen]]
+  - [[#adding-a-custom-image][Adding a custom image]]
+  - [[#adding-custom-title][Adding custom title]]
+  - [[#customizing-menu-items][Customizing menu items]]
+- [[#keybinds][Keybinds]]
+  - [[#misc-keybinds][Misc. keybinds]]
+  - [[#dired-keybinds][Dired keybinds]]
+- [[#org-mode][Org mode]]
+  - [[#customizing-headers][Customizing headers]]
+  - [[#org-agenda][Org agenda]]
 
 * Fixing small annoyances
 When using Deno, there are sometimes super annoying errors that don't really matter, this just disables them.
@@ -42,11 +63,31 @@ Fish isn't a POSIX shell, so I set mine to bash.
 * Basic visual tweaks
 Setting my font, line numbers, and colorscheme.
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Iosevka NFM" :size 15)
-      display-line-numbers-type 'relative
+(setq display-line-numbers-type 'relative
       doom-theme 'catppuccin
       catppuccin-flavor 'mocha
       x-underline-at-descent-line t) ;; i have NO clue what this does, but i dont want to dare removing it
+#+end_src
+** Configuring fonts
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "Iosevka NFM" :size 15)
+      doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15))
+#+end_src
+** Italicizing comments
+#+begin_src emacs-lisp
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic))
+#+end_src
+
+** Rainbow mode
+I <3 LGBTQ+ rep <33
+#+begin_src emacs-lisp
+(define-globalized-minor-mode global-rainbow-mode rainbow-mode
+  (lambda ()
+    (when (not (memq major-mode
+                     (list 'org-agenda-mode)))
+      (rainbow-mode 1))))
+(global-rainbow-mode 1)
 #+end_src
 
 * Configuring the tab bar
@@ -62,8 +103,11 @@ As someone who use Visual Studio Code for years, a solid tab bar is a MUST for m
 * Fancying up the splash screen
 ** Adding a custom image
 #+begin_src emacs-lisp
-(setq fancy-splash-image
-      (expand-file-name "assets/emacs.png" doom-user-dir))
+(let ((alternatives '("emacs.png")))
+
+        (setq fancy-splash-image
+        (concat doom-private-dir "assets/"
+                (nth (random (length alternatives)) alternatives))))
 #+end_src
 
 ** Adding custom title
@@ -142,4 +186,58 @@ I don't need basically half of the items that are in the list by default, so I r
   :n "C-f d" #'dired-do-delete
   :desc "Go up a directory"
   :n "C-f u" #'dired-up-directory))
+#+end_src
+
+* Org mode
+Like every other generic Emacs fan, I do, in fact, use org mode.
+#+begin_src emacs-lisp
+(after! org
+  (setq org-directory "~/org"))
+#+end_src
+
+** Customizing headers
+#+begin_src emacs-lisp
+(after! org
+  (setq org-ellipsis " ▼ "
+        org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
+        org-hide-emphasis-markers t))
+#+end_src
+
+** Org agenda
+This time making an agenda will work... I hope.
+#+begin_src emacs-lisp
+(after! org
+  (setq org-agenda-files
+        '("~/Sync/agenda.org")))
+#+end_src
+
+*** Custom categories
+I find that it's easier to use org agenda when it's broken down by priority rather than just a list of tasks.
+Unfortunately, I watched a [[https://youtu.be/8BOiRmjw5aU][video from DistroTube]] to find out this stuff, and it was probably the lowest point in my life.
+#+begin_src emacs-lisp
+(setq org-agenda-block-separator 8411)
+(setq org-agenda-custom-commands
+      '(("A" "Top priority tasks"
+         ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "High-priority tasks:")))
+          (tags "PRIORITY=\"B\""
+                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                  (org-agenda-overriding-header "Medium-priority tasks:")))
+          (tags "PRIORITY=\"C\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                 (org-agenda-overriding-header "Low-priority tasks:")))
+          (agenda "")
+          (alltodo "")))))
+#+end_src
+
+*** Custom priority markers
+The default priority markers are super ugly, so I'm changing them.
+#+begin_src emacs-lisp
+(setq
+ org-fancy-priorities-list '("[A]" "[B]" "[C]")
+ org-priority-faces
+ '((?A :foreground "#ff6c6b" :weight bold)
+   (?B :foreground "#98be65" :weight bold)
+   (?C :foreground "#c678dd" :weight bold)))
 #+end_src
