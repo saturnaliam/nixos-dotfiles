@@ -63,16 +63,19 @@ Fish isn't a POSIX shell, so I set mine to bash.
 * Basic visual tweaks
 Setting my font, line numbers, and colorscheme.
 #+begin_src emacs-lisp
-(setq display-line-numbers-type 'relative
+(setq display-line-numbers-type t
       doom-theme 'catppuccin
       catppuccin-flavor 'mocha
       x-underline-at-descent-line t) ;; i have NO clue what this does, but i dont want to dare removing it
 #+end_src
 ** Configuring fonts
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Iosevka NFM" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15))
+(setq doom-font (font-spec :family "Iosevka NFM" :size 14))
 #+end_src
+
+#+RESULTS:
+: #<font-spec nil nil Iosevka\ NFM nil nil nil nil nil 14 nil nil nil nil>
+
 ** Italicizing comments
 #+begin_src emacs-lisp
 (custom-set-faces!
@@ -155,6 +158,8 @@ I don't need basically half of the items that are in the list by default, so I r
  "C-b" ":noh<CR>"
 
  (:map evil-normal-state-map
+       "q" nil
+       "C-q" #'evil-record-macro
        "U" #'evil-redo
        "<backtab>" #'centaur-tabs-backward
        "<tab>" #'centaur-tabs-forward)
@@ -199,7 +204,7 @@ Like every other generic Emacs fan, I do, in fact, use org mode.
 #+begin_src emacs-lisp
 (after! org
   (setq org-ellipsis " ▼ "
-        org-superstar-headline-bullets-list '("◉" "●" "○" "◆" "●" "○" "◆")
+        org-superstar-headline-bullets-list '("◉" ("🞛") "○" "▷")
         org-hide-emphasis-markers t))
 #+end_src
 
@@ -211,11 +216,22 @@ This time making an agenda will work... I hope.
         '("~/Sync/agenda.org")))
 #+end_src
 
+*** Custom priority markers
+The default priority markers are super ugly, so I'm changing them.
+#+begin_src emacs-lisp
+(after! org
+(setq
+ org-fancy-priorities-list '("[A]" "[B]" "[C]")
+ org-priority-faces
+ '((?A :foreground "#f38ba8" :weight bold)
+   (?B :foreground "#a6e3a1" :weight bold)
+   (?C :foreground "#cba6f7" :weight bold))))
+#+end_src
+
 *** Custom categories
 I find that it's easier to use org agenda when it's broken down by priority rather than just a list of tasks.
 Unfortunately, I watched a [[https://youtu.be/8BOiRmjw5aU][video from DistroTube]] to find out this stuff, and it was probably the lowest point in my life.
 #+begin_src emacs-lisp
-(setq org-agenda-block-separator 8411)
 (setq org-agenda-custom-commands
       '(("A" "Top priority tasks"
          ((tags "PRIORITY=\"A\""
@@ -231,13 +247,3 @@ Unfortunately, I watched a [[https://youtu.be/8BOiRmjw5aU][video from DistroTube
           (alltodo "")))))
 #+end_src
 
-*** Custom priority markers
-The default priority markers are super ugly, so I'm changing them.
-#+begin_src emacs-lisp
-(setq
- org-fancy-priorities-list '("[A]" "[B]" "[C]")
- org-priority-faces
- '((?A :foreground "#ff6c6b" :weight bold)
-   (?B :foreground "#98be65" :weight bold)
-   (?C :foreground "#c678dd" :weight bold)))
-#+end_src
