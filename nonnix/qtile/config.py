@@ -189,7 +189,7 @@ def get_bar(screen_num):
     ]
 
     if is_desktop:
-        del widgets[4:6]
+        del widgets[6:8]
 
     if screen_num != 1:
         del widgets[-3:]
