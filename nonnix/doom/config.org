@@ -17,6 +17,7 @@
 - [[#keybinds][Keybinds]]
   - [[#misc-keybinds][Misc. keybinds]]
   - [[#dired-keybinds][Dired keybinds]]
+  - [[#manpages][Manpages]]
 - [[#org-mode][Org mode]]
   - [[#customizing-headers][Customizing headers]]
   - [[#org-agenda][Org agenda]]
@@ -191,6 +192,23 @@ I don't need basically half of the items that are in the list by default, so I r
   :n "C-f d" #'dired-do-delete
   :desc "Go up a directory"
   :n "C-f u" #'dired-up-directory))
+#+end_src
+
+** Manpages
+i like both standard emacs keychord type binds, but the leader key is nice too, so why not both!!
+#+begin_src emacs-lisp
+(map!
+ (:leader
+  :desc "Open manpage"
+  "j" #'man
+  :desc "Open womanpage"
+  "k" #'woman)
+
+
+ :desc "Open manpage"
+ "C-c m" #'man
+ :desc "Open womanpage"
+ "C-c w" #'woman)
 #+end_src
 
 * Org mode
