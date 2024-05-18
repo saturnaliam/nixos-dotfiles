@@ -24,7 +24,8 @@
     emacs-gtk
     git
     gh
-    cmakeMinimal
+    cmake
+    openssl.dev
     gnumake42
 
     # other misc stuff
@@ -54,6 +55,7 @@
     sass
     gcc
     deno
+    libsodium
     rustc
     cargo
     python3
@@ -81,6 +83,8 @@
     pipenv # needed for python in doom emacs
     gleam
 
+    python311Packages.pip
+
     (hiPrio clang-tools.override {
       llvmPackages = llvmPackages_16;
       enableLibcxx = false;
@@ -107,6 +111,7 @@
     enable = true;
     backend = "x11";
   };
+
 
   programs.hyprland.enable = true;
 
