@@ -18,6 +18,7 @@
     fd
     obsidian
     tetex
+    vim
     neovim
 
     # various programming-related things
@@ -60,6 +61,7 @@
     cargo
     python3
     libtool
+    cmake-language-server
     jdk
     zig
     nim
@@ -87,7 +89,7 @@
 
     (hiPrio clang-tools.override {
       llvmPackages = llvmPackages_16;
-      enableLibcxx = false;
+      enableLibcxx = true;
     })
 
     (dmenu.override {
