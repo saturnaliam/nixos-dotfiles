@@ -1,35 +1,34 @@
-{ config, pkgs, ... }:
-{
-	programs.fish = {
-		enable = true;
-		interactiveShellInit = ''
-			set fish_greeting
-			set -g __fish_git_prompt_showdirtystate 1
+{ config, pkgs, ... }: {
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      			set fish_greeting
+      			set -g __fish_git_prompt_showdirtystate 1
 
-			function fish_prompt
-				printf ' %s%s %s%s%s%s %s><> ' (set_color red) (whoami) (set_color $fish_color_command) (prompt_pwd) (set_color $fish_color_cwd) (fish_git_prompt) (set_color $fish_color_keyword)
-			end
+      			#function fish_prompt
+      			#	printf ' %s%s %s%s%s%s %s><> ' (set_color red) (whoami) (set_color $fish_color_command) (prompt_pwd) (set_color $fish_color_cwd) (fish_git_prompt) (set_color $fish_color_keyword)
+      			#end
 
-      set -x MANPAGER "nvim +Man!"
-		'';
+            set -x MANPAGER "nvim +Man!"
+      		'';
 
-		shellAliases = {
-			rm = "rm -i";
-			ls = "exa -a --color=always --group-directories-first";
-			l = "exa -a --color=always --group-directories-first";
-			ll = "exa -al --color=always --group-directories-first";
-			mkdir = "mkdir -p";
-			rebuild = "sudo nixos-rebuild switch";
-			gaa = "git add --all";
-			ga = "git add";
-			gm = "git commit -m";
-			gp = "git push";
-			gl = "git pull";
-			gcl = "git clone";
-			gch = "git checkout";
-			gb = "git branch";
-			gs = "git status";
-			gbn = "git checkout -b";
-		};
-	};
+    shellAliases = {
+      rm = "rm -i";
+      ls = "exa -a --color=always --group-directories-first";
+      l = "exa -a --color=always --group-directories-first";
+      ll = "exa -al --color=always --group-directories-first";
+      mkdir = "mkdir -p";
+      rebuild = "sudo nixos-rebuild switch";
+      gaa = "git add --all";
+      ga = "git add";
+      gm = "git commit -m";
+      gp = "git push";
+      gl = "git pull";
+      gcl = "git clone";
+      gch = "git checkout";
+      gb = "git branch";
+      gs = "git status";
+      gbn = "git checkout -b";
+    };
+  };
 }
