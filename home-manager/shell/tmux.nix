@@ -12,7 +12,7 @@
         {
           plugin = pkgs.tmuxPlugins.catppuccin;
           extraConfig = ''
-            set -g @catppuccin_window_default_text "#w"
+            set -g @catppuccin_window_default_text "#W"
             set -g @catppuccin_window_current_text "#W"
             set -g @catppuccin_window_left_separator "█"
             set -g @catppuccin_window_right_separator "█ "
