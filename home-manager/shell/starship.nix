@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   programs.starship.enable = true;
   programs.starship.settings = {
     format = "\\[$username@$hostname$directory\\] $git_status$character";
@@ -16,8 +15,6 @@
       ssh_only = false;
     };
 
-    directory = {
-      format = "[$path]($style)[$read_only]($read_only_style)";
-    }
+    directory = { format = "[$path]($style)[$read_only]($read_only_style)"; };
   };
 }
