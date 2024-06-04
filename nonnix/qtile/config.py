@@ -3,10 +3,12 @@ import subprocess
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
+from qtile_extras import widget
+from qtile_extras.widget.decorations import BorderDecoration
 
 import colors
 
-colors = colors.TokyoNight
+colors = colors.CatppuccinMocha
 
 mod = "mod4"
 terminal = "kitty"
@@ -158,32 +160,55 @@ def get_bar(screen_num):
             this_current_screen_border=colors["extra2"],
             borderwidth=3,
         ),
-        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.TextBox(text="|", foreground=colors["overlay"]),
         widget.WindowName(max_chars=40, foreground=colors["foreground"]),
-        widget.Spacer(length=8),
-        widget.PulseVolume(
-            foreground=colors["extra1"], fmt=" {}", limit_max_volume=True, step=1
-        ),
-        widget.TextBox(text="|", foreground=colors["surface"]),
         widget.Battery(
             format="󰁹 {percent:2.0%}",
             foreground=colors["green"],
             low_foreground=colors["red"],
+            decorations=[
+                BorderDecoration(colour=colors["green"], border_width=[0, 0, 2, 0])
+            ],
         ),
-        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.TextBox(text="|", foreground=colors["overlay"]),
+        widget.PulseVolume(
+            foreground=colors["extra1"],
+            fmt=" {}",
+            limit_max_volume=True,
+            step=1,
+            decorations=[
+                BorderDecoration(colour=colors["extra1"], border_width=[0, 0, 2, 0])
+            ],
+        ),
+        widget.TextBox(text="|", foreground=colors["overlay"]),
         widget.Wlan(
-            format=" {essid}", interface="wlp2s0", foreground=colors["purple"]
+            format=" {essid}",
+            interface="wlp2s0",
+            foreground=colors["purple"],
+            decorations=[
+                BorderDecoration(colour=colors["purple"], border_width=[0, 0, 2, 0])
+            ],
         ),
-        widget.TextBox(text="|", foreground=colors["surface"]),
-        widget.Clock(foreground=colors["yellow"], format="%H:%M"),
-        widget.TextBox(text="|", foreground=colors["surface"]),
+        widget.TextBox(text="|", foreground=colors["overlay"]),
+        widget.Clock(
+            foreground=colors["yellow"],
+            format="󰥔 %H:%M",
+            decorations=[
+                BorderDecoration(colour=colors["yellow"], border_width=[0, 0, 2, 0])
+            ],
+        ),
+        widget.TextBox(text="|", foreground=colors["overlay"]),
         widget.Mpris2(
+            font="Iosevka Nerd Font Propo Bold",
             format="{xesam:title} - {xesam:artist}",
             no_metadata_text="Unknown track",
             paused_text="{track}",
             playing_text="{track}",
             width=150,
-            foreground=colors["extra2"],
+            foreground=colors["extra3"],
+            decorations=[
+                BorderDecoration(colour=colors["extra3"], border_width=[0, 0, 2, 0])
+            ],
         ),
         widget.Spacer(length=8),
     ]

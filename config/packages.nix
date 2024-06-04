@@ -1,5 +1,12 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Noto Sans";
+      fontSize = "9";
+      loginBackground = false;
+    })
+
     # various things to make using the wm easier
     grim
     slurp
@@ -44,11 +51,11 @@
     keepassxc
     eza
     vlc
-    syncthing
     catppuccin-gtk
     pinentry-curses
 
     # programming langs + related stuff
+    vim
     posix_man_pages
     stdmanpages
     lua-language-server
@@ -69,7 +76,7 @@
     html-tidy
     stylelint
     zls
-    nodejs_21
+    nodejs_22
     shfmt
     black
     hugo
@@ -80,7 +87,7 @@
     nodePackages.js-beautify
     rust-analyzer # needed for rust in doom emacs
     shellcheck # needed for shell in doom emacs
-    nixfmt # needed for nix in doom emacs
+    nixfmt-classic # TODO this will prolly get replaced
     isort # needed for python in doom emacs
     pipenv # needed for python in doom emacs
     gleam
@@ -112,8 +119,8 @@
   services.xserver.windowManager.qtile = {
     enable = true;
     backend = "x11";
+    extraPackages = p: with p; [ qtile-extras ];
   };
-
 
   programs.hyprland.enable = true;
 
@@ -121,12 +128,17 @@
 
   programs.steam.enable = true;
 
-  services.syncthing.enable = true;
-
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   programs.direnv.silent = true;
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+  services.syncthing = {
+    enable = true;
+    user = "nixos";
+    dataDir = "/home/lucia/";
+    configDir = "/home/lucia/.config/syncthing";
+  };
 }

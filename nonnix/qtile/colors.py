@@ -19,11 +19,11 @@ CatppuccinMocha = {
     "overlay": "#6c7086",
     "foreground": "#cdd6f4",
     "blue": "#89b4fa",
-    "purple": "#b4befe",
+    "purple": "#cba6f7",
     "red": "#f38ba8",
     "green": "#a6e3a1",
     "yellow": "#f9e2af",
     "extra1": "#f5c2e7",
     "extra2": "#74c7ec",
-    "extra3": "#f5e0dc",
+    "extra3": "#fab387",
 }
